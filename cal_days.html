@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
-    <title>Day Calculator - Daily Tools</title>
+    <title>Calculatrice de jours</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <!-- Flatpickr CSS for date picker -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Reem+Kufi+Fun:wght@400..700&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to your styles.css file -->
   </head>
   <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -45,34 +43,58 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="qr_code.html">QR Code Generator</a></li>
-            <li><a href="cal_days.html">Day Calculator</a></li>
+            <li class="active"><a href="cal_days.html">Day Calculator</a></li>
             <li><a href="./pwd">Password Generator</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
-      <h1>Welcome to Daily Tools!</h1>
-      <p>Here, you can access the following tools:</p>
-      <ul>
-        <li>Day Calculator</li>
-        <li>Strong Password Generator</li>
-        <li>QR Code Generator</li>
-      </ul>
-      <p>
-        I've created this web app to assist you in your daily tasks by bringing
-        together tools that I frequently use.
-      </p>
+      <h1>Day Calculator</h1>
+      <div class="instructions">
+        <p>
+          Choose a date, select an operation (add or subtract), and enter the
+          number of days.
+        </p>
+      </div>
+      <div class="input-group">
+        <label for="date">Date:</label>
+        <input
+          type="text"
+          id="date"
+          name="date"
+          placeholder="Select a date"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="operation">Operation:</label>
+        <select id="operation" name="operation">
+          <option value="add">Add</option>
+          <option value="subtract">Subtract</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="days">Number of days:</label>
+        <input type="number" id="days" name="days" min="0" value="7" required />
+      </div>
+      <button onclick="calculateDate()">Calculate</button>
+      <div id="result" class="result"></div>
+      <div id="error" class="error" style="display: none"></div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- Flatpickr JS for date picker -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr("#date", {
+        dateFormat: "d/m/Y",
+        locale: "fr",
+      });
+    </script>
+    <script src="script.js"></script>
   </body>
 </html>
