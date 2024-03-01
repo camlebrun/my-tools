@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-label input[type="checkbox"] {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">My Tools</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="qr_code.html">QR Code Generator</a></li>
+        <li><a href="index.html">Day Calculator</a></li>
+        <li class="active"><a href="password_generator.html">Password Generator</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="instructions">
+      <h2>Password Generator</h2>
+      <p>Generate a highly secure password:</p>
+    </div>
+    <div id="password-container">
+      <br>
+      <label for="length">Password Length:</label>
+      <input id="length" type="number" min="8" max="32" value="12">
+      <br><br>
+      <label class="checkbox-label" for="uppercase">
+        <input id="uppercase" type="checkbox" checked>
+        Include Uppercase Letters
+      </label>
+      <br><br>
+      <label class="checkbox-label" for="lowercase">
+        <input id="lowercase" type="checkbox" checked>
+        Include Lowercase Letters
+      </label>
+      <br><br>
+      <label class="checkbox-label" for="numbers">
+        <input id="numbers" type="checkbox" checked>
+        Include Numbers
+      </label>
+      <br><br>
+      <label class="checkbox-label" for="symbols">
+        <input id="symbols" type="checkbox" checked>
+        Include Symbols
+      </label>
+      <br><br>
+      <button id="generate-btn">Generate Password</button>
+      <br><br>
+      <input id="password" type="text" readonly>
+      <br><br>
+      <div id="password-output"></div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="password_generator.js"></script>
+</body>
+</html>
