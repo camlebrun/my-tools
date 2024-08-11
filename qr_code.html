@@ -1,101 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QR Code Generator</title>
+    <title>Générateur de QR Code</title>
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Reem+Kufi+Fun:wght@400..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-default">
+    <!-- Barre de Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#myNavbar"
-            aria-expanded="false"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Daily Tools</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li class="active"><a href="qr_code.html">QR Code Generator</a></li>
-            <li><a href="cal_days.html">Day Calculator</a></li>
-            <li><a href="pwd.html">Password Generator</a></li>
+        <a class="navbar-brand" href="#">QuickTools</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="qr_code.html"
+                >Générateur de QR Code</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cal_days.html">Calculatrice de Jours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pwd.html"
+                >Générateur de Mots de Passe</a
+              >
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container">
-      <div class="instructions">
-        <h2>QR Code Generator</h2>
-        <p>Enter URL or Text:</p>
-      </div>
-      <div id="qr-container">
-        <br />
-        <input
-          id="text"
-          type="text"
-          value="www.example.com"
-          placeholder="Enter URL or Text"
-        /><br />
-        <br />
-        <button id="generate-btn">Generate QR Code</button><br />
-        <br />
-        <div id="qrcode"></div>
+    <!-- Contenu Principal -->
+    <div class="container my-5">
+      <div class="text-center">
+        <h2>Générateur de QR Code</h2>
+        <p class="mb-4">Entrez une URL ou un texte :</p>
+        <div class="input-group mb-3">
+          <input
+            id="text"
+            type="text"
+            class="form-control"
+            placeholder="Entrez une URL ou un texte"
+            aria-label="URL ou texte pour QR Code"
+          />
+          <button
+            id="generate-btn"
+            class="btn btn-primary"
+            aria-label="Générer un QR Code"
+          >
+            Générer un QR Code
+          </button>
+        </div>
+        <div id="qrcode" aria-live="polite" role="alert"></div>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap JS et dépendances -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- QR Code JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-      var qrcode = new QRCode("qrcode");
+      document.addEventListener("DOMContentLoaded", function () {
+        const qrcode = new QRCode(document.getElementById("qrcode"));
+        const generateBtn = document.getElementById("generate-btn");
+        const textInput = document.getElementById("text");
 
-      function makeCode() {
-        var elText = document.getElementById("text");
-        var qrContainer = document.getElementById("qrcode");
+        function generateQRCode() {
+          const textValue = textInput.value.trim();
 
-        if (!elText.value) {
-          qrContainer.innerHTML = "<p>Please enter a URL or text.</p>";
-          return;
+          if (textValue) {
+            qrcode.makeCode(textValue);
+          } else {
+            qrcode.clear();
+            document.getElementById("qrcode").innerHTML =
+              "<p>Veuillez entrer une URL ou un texte.</p>";
+          }
         }
 
-        qrcode.makeCode(elText.value);
-      }
+        generateBtn.addEventListener("click", generateQRCode);
 
-      $("#generate-btn").on("click", function () {
-        makeCode();
-      });
-
-      $("#text").on("keydown", function (e) {
-        if (e.keyCode == 13) {
-          makeCode();
-        }
+        textInput.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            generateQRCode();
+          }
+        });
       });
     </script>
   </body>

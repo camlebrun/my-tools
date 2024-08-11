@@ -1,78 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Day Calculator - Daily Tools</title>
+<html lang="fr">
+<head>
+    <title>QuickTools</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <!-- Flatpickr CSS for date picker -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
-    />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Reem+Kufi+Fun:wght@400..700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#navbarToggleExternalContent"
-            aria-expanded="false"
-            aria-controls="navbarToggleExternalContent"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Daily Tools</a>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS Personnalisé -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- Barre de Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">QuickTools</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="qr_code.html">Générateur de QR Code</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cal_days.html">Calculatrice de Jours</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pwd.html">Générateur de Mots de Passe</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="qr_code.html">QR Code Generator</a></li>
-            <li><a href="cal_days.html">Day Calculator</a></li>
-            <li><a href="pwd.html">Password Generator</a></li>
-          </ul>
-        </div>
-      </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Section Héros -->
+    <header class="hero-section text-center py-5 mb-4 bg-light">
+        <div class="container">
+            <h1 class="display-4">Bienvenue sur QuickTools</h1>
+            <p class="lead">Votre application essentielle pour les tâches quotidiennes telles que calculer des jours, générer des mots de passe, ...</p>
+        </div>
+    </header>
+
+    <!-- Contenu Principal -->
     <div class="container">
-      <h1>Welcome to Daily Tools!</h1>
-      <p>Here, you can access the following tools:</p>
-      <ul>
-        <li>Day Calculator</li>
-        <li>Strong Password Generator</li>
-        <li>QR Code Generator</li>
-      </ul>
-      <p>
-        I've created this web app to assist you in your daily tasks by bringing
-        together tools that I frequently use.
-      </p>
-    </div>
+        <div class="row gx-4 gy-4"> <!-- Ajout de l'espace entre les tuiles -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title">Calculatrice de Jours</h5>
+                        <p class="card-text flex-grow-1">Calculez facilement le nombre de jours entre deux dates.</p>
+                        <a href="cal_days.html" class="btn btn-primary mt-auto">Commencer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title">Générateur de QR Code</h5>
+                        <p class="card-text flex-grow-1">Générez des QR codes personnalisés pour vos URL ou texte.</p>
+                        <a href="qr_code.html" class="btn btn-primary mt-auto">Générer un QR</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <h5 class="card-title">Générateur de Mots de Passe</h5>
+                        <p class="card-text flex-grow-1">Créez des mots de passe forts et aléatoires pour sécuriser vos comptes.</p>
+                        <a href="pwd.html" class="btn btn-primary mt-auto">Générer un Mot de Passe</a>
+                    </div>
+                </div>
+            </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- Flatpickr JS for date picker -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

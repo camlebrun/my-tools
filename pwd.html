@@ -1,126 +1,239 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title>Strong Password Generator</title>
+    <title>Générateur de Mots de Passe</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css" />
-    <!-- Link to your styles.css file -->
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-default">
+    <!-- Barre de Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#navbarToggleExternalContent"
-            aria-expanded="false"
-            aria-controls="navbarToggleExternalContent"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Daily Tools</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="qr_code.html">QR Code Generator</a></li>
-            <li><a href="cal_days.html">Day Calculator</a></li>
-            <li class="active"><a href="pwd.html">Password Generator</a></li>
+        <a class="navbar-brand" href="#">QuickTools</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="qr_code.html">Générateur de QR Code</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cal_days.html">Calculatrice de Jours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="pwd.html"
+                >Générateur de Mots de Passe</a
+              >
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container">
-      <h1>Strong Password Generator</h1>
-      <div class="instructions">
-        <p>Choose the options below to generate a strong password.</p>
+    <div class="container my-5">
+      <h1 class="text-center">Générateur de Mots de Passe</h1>
+      <div class="instructions text-center mb-4">
+        <p>
+          Choisissez les options ci-dessous pour générer un mot de passe
+          sécurisé.
+        </p>
       </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <!-- Champ pour la longueur du mot de passe -->
+          <div class="mb-3">
+            <label for="length" class="form-label"
+              >Longueur du mot de passe :</label
+            >
+            <input
+              type="number"
+              id="length"
+              name="length"
+              class="form-control"
+              min="16"
+              max="32"
+              value="16"
+              required
+            />
+          </div>
 
-      <!-- Move the "Password Length" input field above the toggle button -->
-      <div class="input-group">
-        <label for="length">Password Length:</label>
-        <input
-          type="number"
-          id="length"
-          name="length"
-          min="12"
-          max="32"
-          value="12"
-          required
-        />
-      </div>
+          <!-- Bouton pour afficher les paramètres -->
+          <button
+            class="btn btn-primary mb-3 w-100"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSettings"
+            aria-expanded="false"
+            aria-controls="collapseSettings"
+          >
+            Afficher les paramètres
+          </button>
 
-      <!-- Add the styled toggle button -->
-      <button
-        type="button"
-        class="toggle-btn"
-        data-toggle="collapse"
-        data-target="#collapseSettings"
-        aria-expanded="false"
-        aria-controls="collapseSettings"
-      >
-        <i class="glyphicon glyphicon-chevron-down"></i> Show Settings
-      </button>
+          <!-- Paramètres supplémentaires -->
+          <div class="collapse" id="collapseSettings">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="includeSymbols"
+                name="includeSymbols"
+                checked
+              />
+              <label class="form-check-label" for="includeSymbols"
+                >Inclure des symboles</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="includeNumbers"
+                name="includeNumbers"
+                checked
+              />
+              <label class="form-check-label" for="includeNumbers"
+                >Inclure des chiffres</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="includeUppercase"
+                name="includeUppercase"
+                checked
+              />
+              <label class="form-check-label" for="includeUppercase"
+                >Inclure des majuscules</label
+              >
+            </div>
+          </div>
 
-      <!-- Wrap the settings in a collapse div -->
-      <div class="collapse" id="collapseSettings">
-        <div class="input-group checkbox-label">
-          <input
-            type="checkbox"
-            id="includeSymbols"
-            name="includeSymbols"
-            checked
-          />
-          <label for="includeSymbols">Include Symbols</label>
+          <!-- Conteneur pour le mot de passe généré -->
+          <div class="mt-4 text-center">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Mot de passe généré"
+                readonly
+              />
+              <button class="btn btn-success" onclick="generatePassword()">
+                Générer
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="input-group checkbox-label">
-          <input
-            type="checkbox"
-            id="includeNumbers"
-            name="includeNumbers"
-            checked
-          />
-          <label for="includeNumbers">Include Numbers</label>
-        </div>
-        <div class="input-group checkbox-label">
-          <input
-            type="checkbox"
-            id="includeUppercase"
-            name="includeUppercase"
-            checked
-          />
-          <label for="includeUppercase">Include Uppercase Letters</label>
-        </div>
-      </div>
-
-      <!-- Password container remains outside the collapse -->
-      <div class="password-container">
-        <label for="password">Password:</label>
-        <input
-          type="text"
-          id="password"
-          name="password"
-          placeholder="Generated Password"
-          readonly
-        />
-        <button onclick="generatePassword()">Generate</button>
       </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="password_generator.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script pour générer le mot de passe -->
+    <script>
+      function generatePassword() {
+        var minLength = 16; // Longueur minimale pour un mot de passe de haute sécurité
+        var maxLength = 32;
+
+        var length = parseInt(document.getElementById("length").value);
+        if (length < minLength || length > maxLength) {
+          alert(
+            "La longueur du mot de passe doit être comprise entre 16 et 32 caractères."
+          );
+          return;
+        }
+
+        var includeSymbols = document.getElementById("includeSymbols").checked;
+        var includeNumbers = document.getElementById("includeNumbers").checked;
+        var includeUppercase =
+          document.getElementById("includeUppercase").checked;
+
+        var lowercaseCharset = "abcdefghijklmnopqrstuvwxyz";
+        var uppercaseCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var numbersCharset = "0123456789";
+        var symbolsCharset = "!@#$%^&*()_+{}[]<>?|:;,.~";
+
+        var charset = lowercaseCharset;
+        if (includeUppercase) charset += uppercaseCharset;
+        if (includeNumbers) charset += numbersCharset;
+        if (includeSymbols) charset += symbolsCharset;
+
+        var password = "";
+        var requiredChars = [];
+
+        // S'assurer que le mot de passe comprend au moins un caractère de chaque catégorie sélectionnée
+        if (includeUppercase)
+          requiredChars.push(
+            uppercaseCharset[
+              Math.floor(Math.random() * uppercaseCharset.length)
+            ]
+          );
+        if (includeNumbers)
+          requiredChars.push(
+            numbersCharset[Math.floor(Math.random() * numbersCharset.length)]
+          );
+        if (includeSymbols)
+          requiredChars.push(
+            symbolsCharset[Math.floor(Math.random() * symbolsCharset.length)]
+          );
+
+        // Remplir le reste du mot de passe avec des caractères aléatoires
+        for (var i = requiredChars.length; i < length; i++) {
+          var randomIndex = Math.floor(Math.random() * charset.length);
+          password += charset[randomIndex];
+        }
+
+        // Ajouter les caractères requis au mot de passe
+        password += requiredChars.join("");
+
+        // Mélanger le mot de passe pour éviter les motifs prévisibles
+        password = shuffleArray(password);
+
+        document.getElementById("password").value = password;
+
+        // Ajuster dynamiquement la largeur du champ de mot de passe en fonction de sa longueur
+        var passwordLength = password.length;
+        var inputWidth = 15 * passwordLength + 30; // Ajuster cette formule pour la largeur souhaitée
+        document.getElementById("password").style.width = inputWidth + "px";
+      }
+
+      function shuffleArray(password) {
+        var array = password.split("");
+        for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array.join("");
+      }
+    </script>
   </body>
 </html>

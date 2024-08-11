@@ -1,175 +1,166 @@
+/* Variable Definitions */
 :root {
-  --primary-color: #ffd95d;
-  --primary-hover-color: #c49b13;
-  --text-color: #000000;
-  --background-color: #f4f4f4;
-  --border-color: #ccc;
+  --primary-color: #1C1C1E; /* Deep Noir */
+  --accent-color: #1E90FF; /* Dodger Blue for accents */
+  --text-color: #2C3E50; /* Dark Night Blue for text */
+  --background-color: #f0f0f0; /* Pure White */
+  --card-bg-color: #fbf6f6; /* Card background */
+  --hover-color: #1558B0; /* Darker shade for hover effects */
 }
 
+/* Global Styles */
 body {
-  font-family: "Reem Kufi Fun", sans-serif;
+  background-color: var(--background-color);
+  font-family: "Montserrat", sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
-.navbar.navbar-default {
-  background-color: var(--background-color);
-}
-
-.navbar.navbar-default .navbar-nav > li > a {
-  color: var(--text-color);
-}
-
-.navbar.navbar-default .navbar-nav > li > a:hover,
-.navbar.navbar-default .navbar-nav > li.active > a {
-  color: white;
-}
-
-.nav-pills {
-  background-color: var(--background-color);
-  padding: 2px;
-}
-
-.nav-pills .nav-item {
-  color: var(--text-color);
-  font-size: 18px;
-  padding: 10px 15px;
-}
-
-.container {
-  width: 100%;
-  height: 100vh;
-  padding: 20px;
-  background-color: var(--background-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.title {
-  text-align: center;
-  color: var(--text-color);
-  margin-bottom: 20px;
-}
-
-.instructions {
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-.input-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input[type="date"],
-input[type="number"],
-select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
-}
-
-button {
-  width: 150px;
-  padding: 10px;
-  height: 40px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: var(--primary-hover-color);
-}
-
-.result {
-  margin-top: 20px;
-  font-size: 18px;
-}
-
-.error {
-  margin-top: 10px;
-  color: red;
-  font-size: 14px;
-}
-
+/* Navigation Bar */
 .navbar {
-  margin-bottom: 0px;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--card-bg-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.checkbox-label {
-  display: flex;
-  align-items: center;
+.navbar .navbar-brand {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
-.checkbox-label input[type="checkbox"] {
-  margin-right: 5px;
+.navbar .nav-link {
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.password-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.navbar .nav-link:hover,
+.navbar .nav-link.active,
+.navbar .nav-link:focus {
+  color: var(--accent-color);
+  outline: none;
 }
 
-.toggle-btn {
-  background-color: var(--primary-color);
-  border: none;
-  color: white;
-  padding: 5px 10px;
+/* Hero Section */
+.hero-section {
+  background-color: var(--card-bg-color);
+  color: var(--primary-color);
+  padding: 3rem 1rem;
   text-align: center;
+}
+
+.hero-section .display-4 {
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.hero-section .lead {
+  color: var(--accent-color);
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-section .cta-btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-section .cta-btn:hover,
+.hero-section .cta-btn:focus {
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg-color);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card-text {
+  color: var(--text-color);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card .btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card .btn:hover,
+.card .btn:focus {
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1.5rem 0;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer a {
+  color: var(--accent-color);
   text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border-radius: 3px;
+  margin: 0 10px;
 }
 
-.toggle-btn:hover {
-  background-color: var(--primary-hover-color);
+footer a:hover,
+footer a:focus {
+  text-decoration: underline;
+  outline: none;
 }
 
-.toggle-btn .glyphicon {
-  font-size: 12px;
-  margin-right: 5px;
-}
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero-section .display-4 {
+    font-size: 2rem;
+  }
 
-.password-container input[type="text"] {
-  width: 100%;
-  padding: 15px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  text-align: center;
-  box-sizing: border-box;
-}
+  .hero-section .lead {
+    font-size: 1.1rem;
+  }
 
-.password-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.password-container button:hover {
-  background-color: var(--primary-hover-color);
+  .card {
+    margin-bottom: 1.5rem;
+  }
 }
