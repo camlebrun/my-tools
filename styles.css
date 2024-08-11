@@ -3,9 +3,10 @@
   --primary-color: #1C1C1E; /* Deep Noir */
   --accent-color: #1E90FF; /* Dodger Blue for accents */
   --text-color: #2C3E50; /* Dark Night Blue for text */
-  --background-color: #f0f0f0; /* Pure White */
-  --card-bg-color: #fbf6f6; /* Card background */
+  --background-color: #f8f9fa; /* Light Gray */
+  --card-bg-color: #ffffff; /* White background */
   --hover-color: #1558B0; /* Darker shade for hover effects */
+  --focus-color: #FF4500; /* Orange for focus */
 }
 
 /* Global Styles */
@@ -13,7 +14,7 @@ body {
   background-color: var(--background-color);
   font-family: "Montserrat", sans-serif;
   color: var(--text-color);
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0;
   padding: 0;
 }
@@ -30,19 +31,21 @@ body {
 .navbar .navbar-brand {
   color: var(--primary-color);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 .navbar .nav-link {
   color: var(--text-color);
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 5px;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active,
 .navbar .nav-link:focus {
   color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
   outline: none;
 }
 
@@ -50,19 +53,21 @@ body {
 .hero-section {
   background-color: var(--card-bg-color);
   color: var(--primary-color);
-  padding: 3rem 1rem;
+  padding: 4rem 1.5rem;
   text-align: center;
+  border-bottom: 1px solid #ddd;
 }
 
 .hero-section .display-4 {
-  font-weight: 700;
-  font-size: 2.5rem;
+  font-weight: 800;
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
 }
 
 .hero-section .lead {
-  color: var(--accent-color);
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-size: 1.35rem;
+  margin-bottom: 2rem;
 }
 
 .hero-section .cta-btn {
@@ -70,17 +75,17 @@ body {
   color: white;
   border: none;
   border-radius: 50px;
-  padding: 12px 24px;
+  padding: 15px 30px;
   text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .hero-section .cta-btn:hover,
 .hero-section .cta-btn:focus {
   background-color: var(--hover-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   outline: none;
 }
 
@@ -88,26 +93,26 @@ body {
 .card {
   background-color: var(--card-bg-color);
   border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-7px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
 }
 
 .card-title {
   color: var(--primary-color);
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
 .card-text {
   color: var(--text-color);
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 1.75rem;
 }
 
 .card .btn {
@@ -115,17 +120,17 @@ body {
   color: white;
   border: none;
   border-radius: 50px;
-  padding: 10px 20px;
+  padding: 12px 25px;
   text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .card .btn:hover,
 .card .btn:focus {
   background-color: var(--hover-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   outline: none;
 }
 
@@ -133,7 +138,7 @@ body {
 footer {
   background-color: var(--primary-color);
   color: white;
-  padding: 1.5rem 0;
+  padding: 2rem 0;
   text-align: center;
   margin-top: 2rem;
 }
@@ -141,7 +146,7 @@ footer {
 footer a {
   color: var(--accent-color);
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 footer a:hover,
@@ -153,14 +158,14 @@ footer a:focus {
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .hero-section .display-4 {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .hero-section .lead {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .card {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 }
