@@ -1,1 +1,126 @@
-<!doctypehtml><html lang="fr"><meta charset="utf-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>Calculatrice de Jours - Outils Personnels</title><meta name="description"content="Calculateur de dates simple pour vos besoins quotidiens"><link rel="preconnect"href="https://fonts.googleapis.com"><link rel="preconnect"href="https://fonts.gstatic.com"crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"rel="stylesheet"><link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"><link rel="stylesheet"href="styles.css"><nav class="navbar"><div class="container"><a href="index.html"class="navbar-brand">QuickTools</a> <button class="nav-toggle"aria-label="Toggle navigation"><span></span> <span></span> <span></span></button><ul class="nav-menu"><li><a href="index.html"class="nav-link">Accueil</a><li><a href="qr_code.html"class="nav-link">Générateur QR Code</a><li><a href="cal_days.html"class="nav-link active">Calculatrice de Jours</a><li><a href="pwd.html"class="nav-link">Générateur Mots de Passe</a></ul></div></nav><section class="hero-section"><div class="container"><div class="hero-content"><h1 class="hero-title">Calculatrice de <span class="text-gradient">Jours</span></h1><p class="hero-subtitle">Calculez facilement les différences de dates et ajoutez/soustrayez des jours</div><div class="hero-visuals"><div class="floating-element"></div><div class="floating-element"></div></div></div></section><main><section class="tools-section"><div class="container"><div class="calculator-container"><div class="calculator-input-section"><div class="form-group"><label for="operation"class="form-label">Opération :</label> <select id="operation"name="operation"class="form-control"onchange="toggleFields()"><option value=""selected="selected"disabled="disabled">Choisir une opération<option value="add">Ajouter des jours<option value="subtract">Soustraire des jours<option value="difference">Différence entre deux dates</select></div><div class="form-group"id="dateGroup"style="display:none"><label for="date"class="form-label">Date :</label> <input id="date"name="date"class="form-control"placeholder="Sélectionnez une date"></div><div class="form-group"id="secondDateGroup"style="display:none"><label for="secondDate"class="form-label">Deuxième date :</label> <input id="secondDate"name="secondDate"class="form-control"placeholder="Sélectionnez une deuxième date"></div><div class="form-group"id="daysGroup"style="display:none"><label for="days"class="form-label">Nombre de jours :</label> <input type="number"id="days"name="days"class="form-control"min="0"value="7"></div><button id="calculateBtn"class="btn btn-primary"onclick="calculateDate()"style="display:none">Calculer</button></div><div class="calculator-result-section"><div id="result"class="result"></div><div id="error"class="error"style="display:none"></div></div></div></div></section><section class="simple-section"><div class="container"><div class="simple-content"><p class="simple-text">Outils simples et efficaces pour mes besoins quotidiens</div></div></section></main><footer class="footer"><div class="container"><div class="footer-content"><div class="footer-section"><h3 class="footer-brand">QuickTools</h3><p class="footer-description">Outils personnels pour simplifier le quotidien</div><div class="footer-section"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a><li><a href="qr_code.html">Générateur QR Code</a><li><a href="cal_days.html">Calculatrice de Jours</a><li><a href="pwd.html">Générateur Mots de Passe</a></ul></div><div class="footer-section"><h4>Contact</h4><div class="social-links"><a href="#"class="social-link"><span class="social-icon"></span></a> <a href="#"class="social-link"><span class="social-icon"></span></a> <a href="#"class="social-link"><span class="social-icon"></span></a></div></div></div><div class="footer-bottom"><p>&copy; 2025 QuickTools. Projet personnel.</div></div></footer><script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><script src="script.js"></script><script>function toggleFields(){var e=document.getElementById("operation").value,t=document.getElementById("dateGroup"),n=document.getElementById("secondDateGroup"),l=document.getElementById("daysGroup"),a=document.getElementById("calculateBtn");e?(t.style.display="block",a.style.display="block","difference"===e?(n.style.display="block",l.style.display="none"):(n.style.display="none",l.style.display="block")):(t.style.display="none",n.style.display="none",l.style.display="none",a.style.display="none")}function calculateDate(){var e,t=document.getElementById("date").value,n=document.getElementById("operation").value,l=parseInt(document.getElementById("days").value),a=document.getElementById("secondDate").value,d=document.getElementById("result"),o=document.getElementById("error");if(""===t)return o.textContent="Veuillez choisir une date.",o.style.display="block",void(d.textContent="");var i=t.split("/"),s=new Date(i[2],i[1]-1,i[0]);if(isNaN(s.getTime()))return o.textContent="La date saisie est invalide.",o.style.display="block",void(d.textContent="");if("add"===n)e=new Date(s.getTime()+24*l*60*60*1e3);else if("subtract"===n)e=new Date(s.getTime()-24*l*60*60*1e3);else if("difference"===n){if(""===a)return o.textContent="Veuillez choisir une deuxième date.",o.style.display="block",void(d.textContent="");var y=a.split("/"),r=new Date(y[2],y[1]-1,y[0]);if(isNaN(r.getTime()))return o.textContent="La deuxième date saisie est invalide.",o.style.display="block",void(d.textContent="");var c=Math.abs(r-s),u=Math.ceil(c/864e5);return d.textContent="Différence: "+u+" jours",void(o.style.display="none")}var m=e.toLocaleDateString("fr-FR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});d.textContent="Résultat: "+m,o.style.display="none"}flatpickr("#date",{dateFormat:"d/m/Y",locale:"fr"}),flatpickr("#secondDate",{dateFormat:"d/m/Y",locale:"fr"})</script>
+<!doctypehtml>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"content="width=device-width,initial-scale=1">
+<title>Calculatrice de Jours - Outils Personnels</title>
+<meta name="description"content="Calculateur de dates simple pour vos besoins quotidiens">
+<link rel="preconnect"href="https://fonts.googleapis.com">
+<link rel="preconnect"href="https://fonts.gstatic.com"crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"rel="stylesheet">
+<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet"href="styles.css">
+</head>
+<body>
+<nav class="navbar">
+<div class="container">
+<a href="index.html"class="navbar-brand">QuickTools</a>
+<button class="nav-toggle"aria-label="Toggle navigation">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<ul class="nav-menu">
+<li><a href="index.html"class="nav-link">Accueil</a></li>
+<li><a href="qr_code.html"class="nav-link">Générateur QR Code</a></li>
+<li><a href="cal_days.html"class="nav-link active">Calculatrice de Jours</a></li>
+<li><a href="pwd.html"class="nav-link">Générateur Mots de Passe</a></li>
+</ul>
+</div>
+</nav>
+<section class="hero-section">
+<div class="container">
+<div class="hero-content">
+<h1 class="hero-title">Calculatrice de <span class="text-gradient">Jours</span></h1>
+<p class="hero-subtitle">
+Calculez facilement les différences de dates et ajoutez/soustrayez des jours
+</p>
+</div>
+<div class="hero-visuals">
+<div class="floating-element"></div>
+<div class="floating-element"></div>
+</div>
+</div>
+</section>
+<main>
+<section class="tools-section">
+<div class="container">
+<div class="calculator-container">
+<div class="calculator-input-section">
+<div class="form-group">
+<label for="operation"class="form-label">Opération :</label>
+<select id="operation"name="operation"class="form-control"onchange="toggleFields()">
+<option value=""selected="selected"disabled="disabled">Choisir une opération</option>
+<option value="add">Ajouter des jours</option>
+<option value="subtract">Soustraire des jours</option>
+<option value="difference">Différence entre deux dates</option>
+</select>
+</div>
+<div class="form-group"id="dateGroup"style="display:none">
+<label for="date"class="form-label">Date :</label>
+<input id="date"name="date"class="form-control"placeholder="Sélectionnez une date">
+</div>
+<div class="form-group"id="secondDateGroup"style="display:none">
+<label for="secondDate"class="form-label">Deuxième date :</label>
+<input id="secondDate"name="secondDate"class="form-control"placeholder="Sélectionnez une deuxième date">
+</div>
+<div class="form-group"id="daysGroup"style="display:none">
+<label for="days"class="form-label">Nombre de jours :</label>
+<input type="number"id="days"name="days"class="form-control"min="0"value="7">
+</div>
+<button id="calculateBtn"class="btn btn-primary"onclick="calculateDate()"style="display:none">
+Calculer
+</button>
+</div>
+<div class="calculator-result-section">
+<div id="result"class="result"></div>
+<div id="error"class="error"style="display:none"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="simple-section">
+<div class="container">
+<div class="simple-content">
+<p class="simple-text">
+Outils simples et efficaces pour mes besoins quotidiens
+</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3 class="footer-brand">QuickTools</h3>
+<p class="footer-description">
+Outils personnels pour simplifier le quotidien
+</p>
+</div>
+<div class="footer-section">
+<h4>Navigation</h4>
+<ul>
+<li><a href="index.html">Accueil</a></li>
+<li><a href="qr_code.html">Générateur QR Code</a></li>
+<li><a href="cal_days.html">Calculatrice</a></li>
+<li><a href="pwd.html">Mots de Passe</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>Contact</h4>
+<div class="social-links">
+<a href="#"class="social-link"><span class="social-icon"></span></a>
+<a href="#"class="social-link"><span class="social-icon"></span></a>
+<a href="#"class="social-link"><span class="social-icon"></span></a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 QuickTools. Projet personnel.</p>
+</div>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="script.js"></script>
+<script>function toggleFields(){var e=document.getElementById("operation").value,t=document.getElementById("dateGroup"),n=document.getElementById("secondDateGroup"),l=document.getElementById("daysGroup"),a=document.getElementById("calculateBtn");e?(t.style.display="block",a.style.display="block","difference"===e?(n.style.display="block",l.style.display="none"):(n.style.display="none",l.style.display="block")):(t.style.display="none",n.style.display="none",l.style.display="none",a.style.display="none")}function calculateDate(){var e,t=document.getElementById("date").value,n=document.getElementById("operation").value,l=parseInt(document.getElementById("days").value),a=document.getElementById("secondDate").value,d=document.getElementById("result"),o=document.getElementById("error");if(""===t)return o.textContent="Veuillez choisir une date.",o.style.display="block",void(d.textContent="");var i=t.split("/"),s=new Date(i[2],i[1]-1,i[0]);if(isNaN(s.getTime()))return o.textContent="La date saisie est invalide.",o.style.display="block",void(d.textContent="");if("add"===n)e=new Date(s.getTime()+24*l*60*60*1e3);else if("subtract"===n)e=new Date(s.getTime()-24*l*60*60*1e3);else if("difference"===n){if(""===a)return o.textContent="Veuillez choisir une deuxième date.",o.style.display="block",void(d.textContent="");var y=a.split("/"),r=new Date(y[2],y[1]-1,y[0]);if(isNaN(r.getTime()))return o.textContent="La deuxième date saisie est invalide.",o.style.display="block",void(d.textContent="");var c=Math.abs(r-s),u=Math.ceil(c/864e5);return d.textContent="Différence: "+u+" jours",void(o.style.display="none")}var m=e.toLocaleDateString("fr-FR",{weekday:"long",year:"numeric",month:"long",day:"numeric"});d.textContent="Résultat: "+m,o.style.display="none"}flatpickr("#date",{dateFormat:"d/m/Y",locale:"fr"}),flatpickr("#secondDate",{dateFormat:"d/m/Y",locale:"fr"})</script>

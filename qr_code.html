@@ -1,1 +1,161 @@
-<!doctypehtml><html lang="fr"><meta charset="UTF-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>Générateur QR Code - QuickTools 2025</title><meta name="description"content="Générateur QR codes simple avec options de personnalisation. Interface moderne et résultats de qualité."><link rel="stylesheet"href="styles.css"><nav class="navbar"id="navbar"><div class="container"><a class="navbar-brand"href="index.html"aria-label="QuickTools - Accueil">QuickTools </a><button class="nav-toggle"id="navToggle"aria-label="Menu de navigation"><span></span> <span></span> <span></span></button><div class="nav-menu"id="navMenu"><ul class="nav-list"><li class="nav-item"><a class="nav-link"href="index.html">Accueil</a><li class="nav-item"><a class="nav-link active"href="qr_code.html"aria-current="page">Générateur QR Code</a><li class="nav-item"><a class="nav-link"href="cal_days.html">Calculatrice de Jours</a><li class="nav-item"><a class="nav-link"href="pwd.html">Générateur Mots de Passe</a></ul></div></div></nav><header class="hero-section"><div class="container"><div class="hero-content"><h1 class="hero-title">Générateur <span class="text-gradient">QR Code</span></h1><p class="hero-subtitle">Créez des QR codes personnalisés pour vos URLs, textes ou informations de contact. Interface simple et résultats de qualité.</div><div class="hero-visuals"><div class="floating-element"data-speed="2"></div><div class="floating-element"data-speed="1.5"></div><div class="floating-element"data-speed="3"></div></div></div></header><main class="tools-section"><div class="container"><div class="qr-generator-container"><div class="qr-input-section"><h2>Générez votre QR Code</h2><p class="section-subtitle">Entrez une URL, un texte ou des informations de contact<div class="input-group"><input id="text"class="form-control"placeholder="Entrez une URL ou un texte..."aria-label="URL ou texte pour QR Code"> <button id="generate-btn"class="btn btn-primary"aria-label="Générer un QR Code">Générer</button></div><div class="qr-options"><div class="option-group"><label for="qr-size">Taille du QR Code:</label> <select id="qr-size"class="form-control"><option value="128">128x128<option value="256"selected="selected">256x256<option value="512">512x512</select></div><div class="option-group"><label for="qr-foreground">Couleur:</label> <input type="color"id="qr-foreground"value="#000000"class="form-control color-picker"></div></div></div><div class="qr-result-section"><div id="qrcode"class="qr-display"aria-live="polite"role="alert"><div class="qr-placeholder"><span class="placeholder-icon"></span><p>Votre QR code apparaîtra ici</div></div><div class="qr-actions"style="display:none"><button id="download-btn"class="btn btn-secondary">Télécharger</button> <button id="copy-btn"class="btn btn-secondary">Copier</button></div></div></div></div></main><section class="simple-section"><div class="container"><div class="simple-content"><p class="simple-text">Outils simples et efficaces pour mes besoins quotidiens</div></div></section><footer class="footer"><div class="container"><div class="footer-content"><div class="footer-brand"><h3 class="footer-title">QuickTools</h3><p class="footer-description">Outils personnels pour simplifier le quotidien</div><div class="footer-links"><div class="footer-section"><h4>Outils</h4><ul><li><a href="cal_days.html">Calculatrice de Jours</a><li><a href="qr_code.html">Générateur QR Code</a><li><a href="pwd.html">Mots de Passe</a></ul></div><div class="footer-section"><h4>Support</h4><ul><li><a href="#privacy">Confidentialité</a><li><a href="#terms">Conditions d'utilisation</a><li><a href="#contact">Contact</a></ul></div></div></div><div class="footer-bottom"><p>&copy; 2025 QuickTools. Tous droits réservés.<div class="footer-social"><span class="social-icon"></span> <span class="social-icon"></span> <span class="social-icon"></span></div></div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script src="script.js"></script><script>document.addEventListener("DOMContentLoaded",function(){new QRCode(document.getElementById("qrcode"));const e=document.getElementById("generate-btn"),t=document.getElementById("text"),n=document.getElementById("qr-size"),d=document.getElementById("qr-foreground"),o=document.getElementById("download-btn"),i=document.getElementById("copy-btn"),c=document.querySelector(".qr-actions"),r=document.getElementById("qrcode");function a(){const e=t.value.trim(),o=parseInt(n.value),i=d.value;if(e){r.innerHTML="";new QRCode(r,{text:e,width:o,height:o,colorDark:i,colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});c.style.display="flex",r.classList.add("qr-generated")}else showError("Veuillez entrer une URL ou un texte.",t),c.style.display="none"}e.addEventListener("click",a),o.addEventListener("click",function(){const e=r.querySelector("canvas");if(e){const t=document.createElement("a");t.download="qr-code.png",t.href=e.toDataURL(),t.click()}}),i.addEventListener("click",function(){const e=r.querySelector("canvas");e&&e.toBlob(function(e){navigator.clipboard&&navigator.clipboard.write&&navigator.clipboard.write([new ClipboardItem({"image/png":e})]).then(()=>{i.textContent="Copié !",setTimeout(()=>{i.textContent="Copier"},2e3)})})}),t.addEventListener("keydown",function(e){"Enter"===e.key&&a()}),t.addEventListener("input",function(){this.value.trim()?(e.disabled=!1,e.classList.remove("btn-disabled")):(e.disabled=!0,e.classList.add("btn-disabled"))}),e.disabled=!0,e.classList.add("btn-disabled")})</script>
+<!doctypehtml>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width,initial-scale=1">
+<title>Générateur QR Code - QuickTools 2025</title>
+<meta name="description"content="Générateur QR codes simple avec options de personnalisation. Interface moderne et résultats de qualité.">
+<link rel="stylesheet"href="styles.css">
+</head>
+<body>
+<nav class="navbar"id="navbar">
+<div class="container">
+<a class="navbar-brand"href="index.html"aria-label="QuickTools - Accueil">
+QuickTools
+</a>
+<button class="nav-toggle"id="navToggle"aria-label="Menu de navigation">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<div class="nav-menu"id="navMenu">
+<ul class="nav-list">
+<li class="nav-item">
+<a class="nav-link"href="index.html">
+Accueil
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link active"href="qr_code.html"aria-current="page">
+Générateur QR Code
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link"href="cal_days.html">
+Calculatrice de Jours
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link"href="pwd.html">
+Générateur Mots de Passe
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<header class="hero-section">
+<div class="container">
+<div class="hero-content">
+<h1 class="hero-title">
+Générateur <span class="text-gradient">QR Code</span>
+</h1>
+<p class="hero-subtitle">
+Créez des QR codes personnalisés pour vos URLs, textes ou informations de contact. Interface simple et résultats de qualité.
+</p>
+</div>
+<div class="hero-visuals">
+<div class="floating-element"data-speed="2"></div>
+<div class="floating-element"data-speed="1.5"></div>
+<div class="floating-element"data-speed="3"></div>
+</div>
+</div>
+</header>
+<main class="tools-section">
+<div class="container">
+<div class="qr-generator-container">
+<div class="qr-input-section">
+<h2>Générez votre QR Code</h2>
+<p class="section-subtitle">
+Entrez une URL, un texte ou des informations de contact
+</p>
+<div class="input-group">
+<input id="text"class="form-control"placeholder="Entrez une URL ou un texte..."aria-label="URL ou texte pour QR Code">
+<button id="generate-btn"class="btn btn-primary"aria-label="Générer un QR Code">
+Générer
+</button>
+</div>
+<div class="qr-options">
+<div class="option-group">
+<label for="qr-size">Taille du QR Code:</label>
+<select id="qr-size"class="form-control">
+<option value="128">128x128</option>
+<option value="256"selected="selected">256x256</option>
+<option value="512">512x512</option>
+</select>
+</div>
+<div class="option-group">
+<label for="qr-foreground">Couleur:</label>
+<input type="color"id="qr-foreground"value="#000000"class="form-control color-picker">
+</div>
+</div>
+</div>
+<div class="qr-result-section">
+<div id="qrcode"class="qr-display"aria-live="polite"role="alert">
+<div class="qr-placeholder">
+<span class="placeholder-icon"></span>
+<p>Votre QR code apparaîtra ici</p>
+</div>
+</div>
+<div class="qr-actions"style="display:none">
+<button id="download-btn"class="btn btn-secondary">
+Télécharger
+</button>
+<button id="copy-btn"class="btn btn-secondary">
+Copier
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<section class="simple-section">
+<div class="container">
+<div class="simple-content">
+<p class="simple-text">
+Outils simples et efficaces pour mes besoins quotidiens
+</p>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-brand">
+<h3 class="footer-title">QuickTools</h3>
+<p class="footer-description">
+Outils personnels pour simplifier le quotidien
+</p>
+</div>
+<div class="footer-links">
+<div class="footer-section">
+<h4>Outils</h4>
+<ul>
+<li><a href="cal_days.html">Calculatrice de Jours</a></li>
+<li><a href="qr_code.html">Générateur QR Code</a></li>
+<li><a href="pwd.html">Mots de Passe</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>Support</h4>
+<ul>
+<li><a href="#privacy">Confidentialité</a></li>
+<li><a href="#terms">Conditions d'utilisation</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 QuickTools. Tous droits réservés.</p>
+<div class="footer-social">
+<span class="social-icon"></span>
+<span class="social-icon"></span>
+<span class="social-icon"></span>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="script.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){new QRCode(document.getElementById("qrcode"));const e=document.getElementById("generate-btn"),t=document.getElementById("text"),n=document.getElementById("qr-size"),d=document.getElementById("qr-foreground"),o=document.getElementById("download-btn"),i=document.getElementById("copy-btn"),c=document.querySelector(".qr-actions"),r=document.getElementById("qrcode");function a(){const e=t.value.trim(),o=parseInt(n.value),i=d.value;if(e){r.innerHTML="";new QRCode(r,{text:e,width:o,height:o,colorDark:i,colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});c.style.display="flex",r.classList.add("qr-generated")}else showError("Veuillez entrer une URL ou un texte.",t),c.style.display="none"}e.addEventListener("click",a),o.addEventListener("click",function(){const e=r.querySelector("canvas");if(e){const t=document.createElement("a");t.download="qr-code.png",t.href=e.toDataURL(),t.click()}}),i.addEventListener("click",function(){const e=r.querySelector("canvas");e&&e.toBlob(function(e){navigator.clipboard&&navigator.clipboard.write&&navigator.clipboard.write([new ClipboardItem({"image/png":e})]).then(()=>{i.textContent="Copié !",setTimeout(()=>{i.textContent="Copier"},2e3)})})}),t.addEventListener("keydown",function(e){"Enter"===e.key&&a()}),t.addEventListener("input",function(){this.value.trim()?(e.disabled=!1,e.classList.remove("btn-disabled")):(e.disabled=!0,e.classList.add("btn-disabled"))}),e.disabled=!0,e.classList.add("btn-disabled")})</script>
