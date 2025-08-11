@@ -12,20 +12,30 @@
 <link rel="stylesheet"href="styles.css">
 </head>
 <body>
-<nav class="navbar">
+<nav class="navbar" id="navbar">
 <div class="container">
-<a href="index.html"class="navbar-brand">QuickTools</a>
-<button class="nav-toggle"aria-label="Toggle navigation">
+<a class="navbar-brand" href="index.html" aria-label="QuickTools - Accueil">QuickTools</a>
+<button class="nav-toggle" id="navToggle" aria-label="Menu de navigation">
 <span></span>
 <span></span>
 <span></span>
 </button>
-<ul class="nav-menu">
-<li><a href="index.html"class="nav-link">Accueil</a></li>
-<li><a href="qr_code.html"class="nav-link">Générateur QR Code</a></li>
-<li><a href="cal_days.html"class="nav-link active">Calculatrice de Jours</a></li>
-<li><a href="pwd.html"class="nav-link">Générateur Mots de Passe</a></li>
+<div class="nav-menu" id="navMenu">
+<ul class="nav-list">
+<li class="nav-item">
+<a class="nav-link" href="index.html">Accueil</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="qr_code.html">Générateur QR Code</a>
+</li>
+<li class="nav-item">
+<a class="nav-link active" href="cal_days.html" aria-current="page">Calculatrice de Jours</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="pwd.html">Générateur Mots de Passe</a>
+</li>
 </ul>
+</div>
 </div>
 </nav>
 <section class="hero-section">
@@ -37,8 +47,7 @@ Calculez facilement les différences de dates et ajoutez/soustrayez des jours
 </p>
 </div>
 <div class="hero-visuals">
-<div class="floating-element"></div>
-<div class="floating-element"></div>
+<div class="floating-element" data-speed="1"></div>
 </div>
 </div>
 </section>
