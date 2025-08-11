@@ -81,6 +81,16 @@
   box-sizing: border-box;
 }
 
+ul, ol {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+li::before,
+li::after {
+  content: none !important;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -215,7 +225,12 @@ p {
 
 .nav-list li::before,
 .nav-list li::after {
-  content: none;
+  content: none !important;
+}
+
+.nav-list li {
+  list-style: none !important;
+  list-style-type: none !important;
 }
 
 .nav-item {
