@@ -1,161 +1,365 @@
-<!doctypehtml>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"content="width=device-width,initial-scale=1">
-<title>Générateur QR Code - QuickTools 2025</title>
-<meta name="description"content="Générateur QR codes simple avec options de personnalisation. Interface moderne et résultats de qualité.">
-<link rel="stylesheet"href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Générateur QR Code - QuickTools 2025</title>
+    <meta name="description" content="Générateur QR codes simple avec options de personnalisation. Interface moderne et résultats de qualité.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar"id="navbar">
-<div class="container">
-<a class="navbar-brand"href="index.html"aria-label="QuickTools - Accueil">
-QuickTools
-</a>
-<button class="nav-toggle"id="navToggle"aria-label="Menu de navigation">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<div class="nav-menu"id="navMenu">
-<ul class="nav-list">
-<li class="nav-item">
-<a class="nav-link"href="index.html">
-Accueil
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link active"href="qr_code.html"aria-current="page">
-Générateur QR Code
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link"href="cal_days.html">
-Calculatrice de Jours
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link"href="pwd.html">
-Générateur Mots de Passe
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<header class="hero-section">
-<div class="container">
-<div class="hero-content">
-<h1 class="hero-title">
-Générateur <span class="text-gradient">QR Code</span>
-</h1>
-<p class="hero-subtitle">
-Créez des QR codes personnalisés pour vos URLs, textes ou informations de contact. Interface simple et résultats de qualité.
-</p>
-</div>
-<div class="hero-visuals">
-<div class="floating-element"data-speed="2"></div>
-<div class="floating-element"data-speed="1.5"></div>
-<div class="floating-element"data-speed="3"></div>
-</div>
-</div>
-</header>
-<main class="tools-section">
-<div class="container">
-<div class="qr-generator-container">
-<div class="qr-input-section">
-<h2>Générez votre QR Code</h2>
-<p class="section-subtitle">
-Entrez une URL, un texte ou des informations de contact
-</p>
-<div class="input-group">
-<input id="text"class="form-control"placeholder="Entrez une URL ou un texte..."aria-label="URL ou texte pour QR Code">
-<button id="generate-btn"class="btn btn-primary"aria-label="Générer un QR Code">
-Générer
-</button>
-</div>
-<div class="qr-options">
-<div class="option-group">
-<label for="qr-size">Taille du QR Code:</label>
-<select id="qr-size"class="form-control">
-<option value="128">128x128</option>
-<option value="256"selected="selected">256x256</option>
-<option value="512">512x512</option>
-</select>
-</div>
-<div class="option-group">
-<label for="qr-foreground">Couleur:</label>
-<input type="color"id="qr-foreground"value="#000000"class="form-control color-picker">
-</div>
-</div>
-</div>
-<div class="qr-result-section">
-<div id="qrcode"class="qr-display"aria-live="polite"role="alert">
-<div class="qr-placeholder">
-<span class="placeholder-icon"></span>
-<p>Votre QR code apparaîtra ici</p>
-</div>
-</div>
-<div class="qr-actions"style="display:none">
-<button id="download-btn"class="btn btn-secondary">
-Télécharger
-</button>
-<button id="copy-btn"class="btn btn-secondary">
-Copier
-</button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<section class="simple-section">
-<div class="container">
-<div class="simple-content">
-<p class="simple-text">
-Outils simples et efficaces pour mes besoins quotidiens
-</p>
-</div>
-</div>
-</section>
-<footer class="footer">
-<div class="container">
-<div class="footer-content">
-<div class="footer-brand">
-<h3 class="footer-title">QuickTools</h3>
-<p class="footer-description">
-Outils personnels pour simplifier le quotidien
-</p>
-</div>
-<div class="footer-links">
-<div class="footer-section">
-<h4>Outils</h4>
-<ul>
-<li><a href="cal_days.html">Calculatrice de Jours</a></li>
-<li><a href="qr_code.html">Générateur QR Code</a></li>
-<li><a href="pwd.html">Mots de Passe</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4>Support</h4>
-<ul>
-<li><a href="#privacy">Confidentialité</a></li>
-<li><a href="#terms">Conditions d'utilisation</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-<p>&copy; 2025 QuickTools. Tous droits réservés.</p>
-<div class="footer-social">
-<span class="social-icon"></span>
-<span class="social-icon"></span>
-<span class="social-icon"></span>
-</div>
-</div>
-</div>
-</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="script.js"></script>
-<script>document.addEventListener("DOMContentLoaded",function(){new QRCode(document.getElementById("qrcode"));const e=document.getElementById("generate-btn"),t=document.getElementById("text"),n=document.getElementById("qr-size"),d=document.getElementById("qr-foreground"),o=document.getElementById("download-btn"),i=document.getElementById("copy-btn"),c=document.querySelector(".qr-actions"),r=document.getElementById("qrcode");function a(){const e=t.value.trim(),o=parseInt(n.value),i=d.value;if(e){r.innerHTML="";new QRCode(r,{text:e,width:o,height:o,colorDark:i,colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});c.style.display="flex",r.classList.add("qr-generated")}else showError("Veuillez entrer une URL ou un texte.",t),c.style.display="none"}e.addEventListener("click",a),o.addEventListener("click",function(){const e=r.querySelector("canvas");if(e){const t=document.createElement("a");t.download="qr-code.png",t.href=e.toDataURL(),t.click()}}),i.addEventListener("click",function(){const e=r.querySelector("canvas");e&&e.toBlob(function(e){navigator.clipboard&&navigator.clipboard.write&&navigator.clipboard.write([new ClipboardItem({"image/png":e})]).then(()=>{i.textContent="Copié !",setTimeout(()=>{i.textContent="Copier"},2e3)})})}),t.addEventListener("keydown",function(e){"Enter"===e.key&&a()}),t.addEventListener("input",function(){this.value.trim()?(e.disabled=!1,e.classList.remove("btn-disabled")):(e.disabled=!0,e.classList.add("btn-disabled"))}),e.disabled=!0,e.classList.add("btn-disabled")})</script>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="QuickTools - Accueil">
+                <span class="brand-icon">⚡</span>
+                QuickTools
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Menu de navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="qr_code.html" aria-current="page">
+                            QR Code
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cal_days.html">
+                            Calculatrice
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pwd.html">
+                            Mots de passe
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Générateur <span class="highlight">QR Code</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Créez des QR codes personnalisés pour vos URLs, textes ou informations de contact. Interface simple et résultats de qualité.
+                </p>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tools-section">
+        <div class="container">
+            <div class="qr-generator-container">
+                <!-- Input Section -->
+                <div class="qr-input-section">
+                    <h2 class="section-title">Générez votre QR Code</h2>
+                    <p class="section-subtitle">
+                        Entrez une URL, un texte ou des informations de contact
+                    </p>
+                    
+                    <div class="input-group">
+                        <input 
+                            id="qr-text" 
+                            class="form-control" 
+                            type="text" 
+                            placeholder="Entrez une URL ou un texte..." 
+                            aria-label="URL ou texte pour QR Code"
+                        >
+                        <button 
+                            id="generate-btn" 
+                            class="btn btn-primary" 
+                            aria-label="Générer un QR Code"
+                        >
+                            Générer
+                        </button>
+                    </div>
+                    
+                    <div class="qr-options">
+                        <div class="option-group">
+                            <label for="qr-size">Taille du QR Code:</label>
+                            <select id="qr-size" class="form-control">
+                                <option value="128">128x128</option>
+                                <option value="256" selected>256x256</option>
+                                <option value="512">512x512</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label for="qr-foreground">Couleur:</label>
+                            <input 
+                                type="color" 
+                                id="qr-foreground" 
+                                value="#000000" 
+                                class="form-control color-picker"
+                                aria-label="Couleur du QR Code"
+                            >
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result Section -->
+                <div class="qr-result-section">
+                    <div id="qrcode" class="qr-display" aria-live="polite" role="alert">
+                        <div class="qr-placeholder">
+                            <div class="placeholder-icon">📱</div>
+                            <p>Votre QR code apparaîtra ici</p>
+                        </div>
+                    </div>
+                    
+                    <div class="qr-actions" style="display: none;">
+                        <button id="download-btn" class="btn btn-outline">
+                            Télécharger
+                        </button>
+                        <button id="copy-btn" class="btn btn-outline">
+                            Copier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-title">QuickTools</h3>
+                    <p class="footer-description">
+                        Outils simples pour un quotidien plus efficace
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Outils</h4>
+                        <ul>
+                            <li><a href="cal_days.html">Calculatrice de Jours</a></li>
+                            <li><a href="qr_code.html">Générateur QR Code</a></li>
+                            <li><a href="pwd.html">Générateur Mots de Passe</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 QuickTools. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        // QR Code Generator Logic
+        class QRCodeGenerator {
+            constructor() {
+                this.textInput = document.getElementById('qr-text');
+                this.generateBtn = document.getElementById('generate-btn');
+                this.sizeSelect = document.getElementById('qr-size');
+                this.colorInput = document.getElementById('qr-foreground');
+                this.qrDisplay = document.getElementById('qrcode');
+                this.downloadBtn = document.getElementById('download-btn');
+                this.copyBtn = document.getElementById('copy-btn');
+                this.qrActions = document.querySelector('.qr-actions');
+                
+                this.init();
+            }
+            
+            init() {
+                this.generateBtn.addEventListener('click', () => this.generateQR());
+                this.textInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.generateQR();
+                });
+                this.downloadBtn.addEventListener('click', () => this.downloadQR());
+                this.copyBtn.addEventListener('click', () => this.copyQR());
+                
+                // Auto-generate on input change
+                this.textInput.addEventListener('input', this.debounce(() => {
+                    if (this.textInput.value.trim()) {
+                        this.generateQR();
+                    }
+                }, 500));
+            }
+            
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+            
+            showError(message, targetElement) {
+                if (!targetElement) return;
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+                errorDiv.style.cssText = `
+                    color: var(--error);
+                    font-size: 0.875rem;
+                    margin-top: var(--space-sm);
+                    padding: var(--space-sm);
+                    background: #fef2f2;
+                    border: 1px solid #fecaca;
+                    border-radius: var(--radius-md);
+                `;
+                
+                targetElement.parentNode.appendChild(errorDiv);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (errorDiv.parentNode) {
+                        errorDiv.remove();
+                    }
+                }, 5000);
+            }
+            
+            showLoading(element) {
+                if (!element) return;
+                
+                element.classList.add('loading');
+                element.disabled = true;
+                
+                // Add loading text if it's a button
+                if (element.tagName === 'BUTTON') {
+                    element.dataset.originalText = element.textContent;
+                    element.textContent = 'Génération...';
+                }
+            }
+            
+            hideLoading(element) {
+                if (!element) return;
+                
+                element.classList.remove('loading');
+                element.disabled = false;
+                
+                // Restore original text if it's a button
+                if (element.tagName === 'BUTTON' && element.dataset.originalText) {
+                    element.textContent = element.dataset.originalText;
+                }
+            }
+            
+            generateQR() {
+                const text = this.textInput.value.trim();
+                if (!text) {
+                    this.showError('Veuillez entrer un texte ou une URL', this.textInput);
+                    return;
+                }
+                
+                this.showLoading(this.generateBtn);
+                
+                try {
+                    const size = parseInt(this.sizeSelect.value);
+                    const color = this.colorInput.value;
+                    
+                    // Clear previous QR code
+                    this.qrDisplay.innerHTML = '';
+                    
+                    // Generate new QR code
+                    QRCode.toCanvas(this.qrDisplay, text, {
+                        width: size,
+                        color: {
+                            dark: color,
+                            light: '#FFFFFF'
+                        },
+                        margin: 1
+                    }, (error) => {
+                        this.hideLoading(this.generateBtn);
+                        
+                        if (error) {
+                            this.showError('Erreur lors de la génération du QR code', this.textInput);
+                            console.error('QR Code generation error:', error);
+                        } else {
+                            this.qrActions.style.display = 'flex';
+                            this.qrDisplay.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                    
+                } catch (error) {
+                    this.hideLoading(this.generateBtn);
+                    this.showError('Erreur lors de la génération du QR code', this.textInput);
+                    console.error('QR Code generation error:', error);
+                }
+            }
+            
+            downloadQR() {
+                const canvas = this.qrDisplay.querySelector('canvas');
+                if (!canvas) return;
+                
+                const link = document.createElement('a');
+                link.download = 'qrcode.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+            
+            copyQR() {
+                const canvas = this.qrDisplay.querySelector('canvas');
+                if (!canvas) return;
+                
+                canvas.toBlob((blob) => {
+                    if (navigator.clipboard && navigator.clipboard.write) {
+                        navigator.clipboard.write([
+                            new ClipboardItem({
+                                'image/png': blob
+                            })
+                        ]).then(() => {
+                            // Show success feedback
+                            const originalText = this.copyBtn.textContent;
+                            this.copyBtn.textContent = 'Copié !';
+                            this.copyBtn.style.background = 'var(--success)';
+                            this.copyBtn.style.color = 'white';
+                            
+                            setTimeout(() => {
+                                this.copyBtn.textContent = originalText;
+                                this.copyBtn.style.background = '';
+                                this.copyBtn.style.color = '';
+                            }, 2000);
+                        });
+                    } else {
+                        this.showError('Copie non supportée par votre navigateur', this.copyBtn);
+                    }
+                });
+            }
+        }
+        
+        // Initialize QR Code Generator when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new QRCodeGenerator();
+        });
+    </script>
+</body>
+</html>

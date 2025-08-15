@@ -1,187 +1,460 @@
-<!doctypehtml>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport"content="width=device-width,initial-scale=1">
-<title>Générateur Mots de Passe - QuickTools 2025</title>
-<meta name="description"content="Générateur mots de passe sécurisés et conformes aux standards de sécurité. Interface simple avec options de personnalisation.">
-<link rel="stylesheet"href="styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Générateur Mots de Passe - QuickTools 2025</title>
+    <meta name="description" content="Générateur mots de passe sécurisés et conformes aux standards de sécurité. Interface simple avec options de personnalisation.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar"id="navbar">
-<div class="container">
-<a class="navbar-brand"href="index.html"aria-label="QuickTools - Accueil">
-QuickTools
-</a>
-<button class="nav-toggle"id="navToggle"aria-label="Menu de navigation">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<div class="nav-menu"id="navMenu">
-<ul class="nav-list">
-<li class="nav-item">
-<a class="nav-link"href="index.html">
-Accueil
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link"href="qr_code.html">
-Générateur QR Code
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link"href="cal_days.html">
-Calculatrice de Jours
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link active"href="pwd.html"aria-current="page">
-Générateur Mots de Passe
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<header class="hero-section">
-<div class="container">
-<div class="hero-content">
-<h1 class="hero-title">
-Générateur <span class="text-gradient">Mots de Passe</span>
-</h1>
-<p class="hero-subtitle">
-Créez des mots de passe sécurisés et conformes aux standards de sécurité. Personnalisez la complexité selon vos besoins.
-</p>
-</div>
-<div class="hero-visuals">
-<div class="floating-element"data-speed="2"></div>
-<div class="floating-element"data-speed="1.5"></div>
-<div class="floating-element"data-speed="3"></div>
-</div>
-</div>
-</header>
-<main class="tools-section">
-<div class="container">
-<div class="password-generator-container">
-<div class="password-input-section">
-<h2>Générez votre Mot de Passe Sécurisé</h2>
-<p class="section-subtitle">
-Configurez les paramètres de sécurité selon vos besoins
-</p>
-<div class="option-group">
-<label for="length">Longueur du mot de passe :</label>
-<div class="length-control">
-<input type="range"id="length"min="16"max="32"value="16"class="form-control range-slider">
-<span class="length-value">16</span>
-</div>
-<small class="length-info">Longueur recommandée : 16-32 caractères</small>
-</div>
-<div class="complexity-options">
-<h3>Options de Complexité</h3>
-<div class="checkbox-group">
-<label class="checkbox-item">
-<input type="checkbox"id="includeLowercase"checked="checked">
-<span class="checkmark"></span>
-Lettres minuscules (a-z)
-</label>
-<label class="checkbox-item">
-<input type="checkbox"id="includeUppercase"checked="checked">
-<span class="checkmark"></span>
-Lettres majuscules (A-Z)
-</label>
-<label class="checkbox-item">
-<input type="checkbox"id="includeNumbers"checked="checked">
-<span class="checkmark"></span>
-Chiffres (0-9)
-</label>
-<label class="checkbox-item">
-<input type="checkbox"id="includeSymbols"checked="checked">
-<span class="checkmark"></span>
-Symboles (!@#$%^&*)
-</label>
-</div>
-</div>
-<button id="generate-btn"class="btn btn-primary btn-large">
-Générer un Mot de Passe
-</button>
-</div>
-<div class="password-result-section">
-<div class="password-display">
-<h3>Mot de Passe Généré</h3>
-<div class="password-field">
-<input id="password"class="form-control password-input"placeholder="Cliquez sur 'Générer' pour créer un mot de passe"readonly="readonly">
-<button id="copy-btn"class="btn btn-secondary"style="display:none">
-Copier
-</button>
-</div>
-<div class="strength-indicator">
-<div class="strength-bar">
-<div class="strength-fill"id="strength-fill"></div>
-</div>
-<span class="strength-text"id="strength-text">Force du mot de passe</span>
-</div>
-<div class="security-info">
-<div class="security-item">
-<span class="security-icon">🔒</span>
-<span>Longueur : <strong id="current-length">-</strong> caractères</span>
-</div>
-<div class="security-item">
-<span class="security-icon">⚡</span>
-<span>Complexité : <strong id="complexity-level">-</strong></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<section class="simple-section">
-<div class="container">
-<div class="simple-content">
-<p class="simple-text">
-Outils simples et efficaces pour mes besoins quotidiens
-</p>
-</div>
-</div>
-</section>
-<footer class="footer">
-<div class="container">
-<div class="footer-content">
-<div class="footer-brand">
-<h3 class="footer-title">QuickTools</h3>
-<p class="footer-description">
-Outils personnels pour simplifier le quotidien
-</p>
-</div>
-<div class="footer-links">
-<div class="footer-section">
-<h4>Outils</h4>
-<ul>
-<li><a href="cal_days.html">Calculatrice de Jours</a></li>
-<li><a href="qr_code.html">Générateur QR Code</a></li>
-<li><a href="pwd.html">Mots de Passe</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4>Support</h4>
-<ul>
-<li><a href="#privacy">Confidentialité</a></li>
-<li><a href="#terms">Conditions d'utilisation</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-<p>&copy; 2025 QuickTools. Tous droits réservés.</p>
-<div class="footer-social">
-<span class="social-icon"></span>
-<span class="social-icon"></span>
-<span class="social-icon"></span>
-</div>
-</div>
-</div>
-</footer>
-<script src="script.js"></script>
-<script>document.addEventListener("DOMContentLoaded",function(){const e=document.getElementById("length"),t=document.querySelector(".length-value"),n=document.getElementById("generate-btn"),o=document.getElementById("password"),d=document.getElementById("copy-btn"),c=document.getElementById("strength-fill"),s=document.getElementById("strength-text"),l=document.getElementById("current-length"),u=document.getElementById("complexity-level");e.addEventListener("input",function(){t.textContent=this.value}),n.addEventListener("click",function(){const t=parseInt(e.value),i=document.getElementById("includeLowercase").checked,a=document.getElementById("includeUppercase").checked,r=document.getElementById("includeNumbers").checked,m=document.getElementById("includeSymbols").checked;if(!(i||a||r||m))return void function(e,t){const n=document.createElement("div");n.classList.add("error-message"),n.textContent=e,t.parentNode.appendChild(n),setTimeout(()=>{n.remove()},5e3)}("Veuillez sélectionner au moins une option de complexité.",n);const g=function(e,t,n,o,d){let c="",s="";t&&(c+="abcdefghijklmnopqrstuvwxyz");n&&(c+="ABCDEFGHIJKLMNOPQRSTUVWXYZ");o&&(c+="0123456789");d&&(c+="!@#$%^&*()_+-=[]{}|;:,.<>?");for(let t=0;t<e;t++){s+=c[Math.floor(Math.random()*c.length)]}return l=s,l.split("").sort(()=>Math.random()-.5).join("");var l}(t,i,a,r,m);o.value=g,d.style.display="inline-flex",function(e){let t=0;e.length>=16&&(t+=25);e.length>=20&&(t+=25);e.length>=24&&(t+=25);e.length>=28&&(t+=25);/[a-z]/.test(e)&&(t+=10);/[A-Z]/.test(e)&&(t+=10);/[0-9]/.test(e)&&(t+=10);/[^A-Za-z0-9]/.test(e)&&(t+=10);t=Math.min(t,100),c.style.width=t+"%",t<40?(c.style.background="#dc2626",s.textContent="Faible"):t<70?(c.style.background="#d97706",s.textContent="Moyen"):t<90?(c.style.background="#059669",s.textContent="Fort"):(c.style.background="#2563eb",s.textContent="Très Fort")}(g),function(e,t,n,o,d){l.textContent=e;let c=0;t&&c++;n&&c++;o&&c++;d&&c++;u.textContent=1===c?"Basique":2===c?"Standard":3===c?"Élevé":"Maximum"}(t,i,a,r,m),n.textContent="Généré !",n.classList.add("btn-success"),setTimeout(()=>{n.textContent="Générer un Mot de Passe",n.classList.remove("btn-success")},2e3)}),d.addEventListener("click",function(){o.value&&navigator.clipboard.writeText(o.value).then(()=>{d.textContent="Copié !",d.classList.add("btn-success"),setTimeout(()=>{d.textContent="Copier",d.classList.remove("btn-success")},2e3)})})})</script>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="QuickTools - Accueil">
+                <span class="brand-icon">⚡</span>
+                QuickTools
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Menu de navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="qr_code.html">
+                            QR Code
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cal_days.html">
+                            Calculatrice
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pwd.html" aria-current="page">
+                            Mots de passe
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Générateur <span class="highlight">Mots de Passe</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Créez des mots de passe sécurisés et conformes aux standards de sécurité. Personnalisez la complexité selon vos besoins.
+                </p>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tools-section">
+        <div class="container">
+            <div class="password-generator-container">
+                <!-- Input Section -->
+                <div class="password-input-section">
+                    <h2 class="section-title">Générez votre Mot de Passe Sécurisé</h2>
+                    <p class="section-subtitle">
+                        Configurez les paramètres de sécurité selon vos besoins
+                    </p>
+                    
+                    <div class="option-group">
+                        <label for="length" class="form-label">Longueur du mot de passe :</label>
+                        <div class="length-control">
+                            <input 
+                                type="range" 
+                                id="length" 
+                                min="8" 
+                                max="64" 
+                                value="16" 
+                                class="form-control range-slider"
+                            >
+                            <span class="length-value">16</span>
+                        </div>
+                        <small class="length-info">Longueur recommandée : 16-32 caractères</small>
+                    </div>
+                    
+                    <div class="complexity-options">
+                        <h3>Options de Complexité</h3>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeLowercase" checked>
+                                <span class="checkmark"></span>
+                                Lettres minuscules (a-z)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeUppercase" checked>
+                                <span class="checkmark"></span>
+                                Lettres majuscules (A-Z)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeNumbers" checked>
+                                <span class="checkmark"></span>
+                                Chiffres (0-9)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeSymbols" checked>
+                                <span class="checkmark"></span>
+                                Symboles (!@#$%^&*)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="password-actions">
+                        <button id="generate-btn" class="btn btn-primary">
+                            Générer un Mot de Passe
+                        </button>
+                        <button id="regenerate-btn" class="btn btn-outline" style="display: none;">
+                            Régénérer
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Result Section -->
+                <div class="password-result-section">
+                    <div class="password-display">
+                        <div id="password" class="password-text" aria-live="polite">
+                            <div class="password-placeholder">
+                                <div class="placeholder-icon">🔐</div>
+                                <p>Votre mot de passe apparaîtra ici</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="password-actions" style="display: none;">
+                        <button id="copy-btn" class="btn btn-outline">
+                            Copier
+                        </button>
+                        <button id="refresh-btn" class="btn btn-outline">
+                            Actualiser
+                        </button>
+                    </div>
+                    
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Force du mot de passe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-title">QuickTools</h3>
+                    <p class="footer-description">
+                        Outils simples pour un quotidien plus efficace
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Outils</h4>
+                        <ul>
+                            <li><a href="cal_days.html">Calculatrice de Jours</a></li>
+                            <li><a href="qr_code.html">Générateur QR Code</a></li>
+                            <li><a href="pwd.html">Générateur Mots de Passe</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 QuickTools. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Password Generator Logic
+        class PasswordGenerator {
+            constructor() {
+                this.lengthSlider = document.getElementById('length');
+                this.lengthValue = document.querySelector('.length-value');
+                this.lowercaseCheckbox = document.getElementById('includeLowercase');
+                this.uppercaseCheckbox = document.getElementById('includeUppercase');
+                this.numbersCheckbox = document.getElementById('includeNumbers');
+                this.symbolsCheckbox = document.getElementById('includeSymbols');
+                this.generateBtn = document.getElementById('generate-btn');
+                this.regenerateBtn = document.getElementById('regenerate-btn');
+                this.passwordDisplay = document.getElementById('password');
+                this.copyBtn = document.getElementById('copy-btn');
+                this.refreshBtn = document.getElementById('refresh-btn');
+                this.passwordActions = document.querySelector('.password-actions');
+                this.strengthFill = document.getElementById('strengthFill');
+                this.strengthText = document.getElementById('strengthText');
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.updateLengthDisplay();
+            }
+            
+            setupEventListeners() {
+                this.lengthSlider.addEventListener('input', () => this.updateLengthDisplay());
+                this.generateBtn.addEventListener('click', () => this.generatePassword());
+                this.regenerateBtn.addEventListener('click', () => this.generatePassword());
+                this.copyBtn.addEventListener('click', () => this.copyPassword());
+                this.refreshBtn.addEventListener('click', () => this.generatePassword());
+                
+                // Update regenerate button visibility when checkboxes change
+                [this.lowercaseCheckbox, this.uppercaseCheckbox, this.numbersCheckbox, this.symbolsCheckbox]
+                    .forEach(checkbox => {
+                        checkbox.addEventListener('change', () => this.updateRegenerateButton());
+                    });
+            }
+            
+            updateLengthDisplay() {
+                this.lengthValue.textContent = this.lengthSlider.value;
+            }
+            
+            updateRegenerateButton() {
+                const hasCheckedOptions = this.lowercaseCheckbox.checked || 
+                                        this.uppercaseCheckbox.checked || 
+                                        this.numbersCheckbox.checked || 
+                                        this.symbolsCheckbox.checked;
+                
+                this.regenerateBtn.style.display = hasCheckedOptions ? 'inline-flex' : 'none';
+            }
+            
+            generatePassword() {
+                const length = parseInt(this.lengthSlider.value);
+                const options = {
+                    lowercase: this.lowercaseCheckbox.checked,
+                    uppercase: this.uppercaseCheckbox.checked,
+                    numbers: this.numbersCheckbox.checked,
+                    symbols: this.symbolsCheckbox.checked
+                };
+                
+                // Validate that at least one option is selected
+                if (!Object.values(options).some(Boolean)) {
+                    this.showError('Veuillez sélectionner au moins une option de complexité');
+                    return;
+                }
+                
+                try {
+                    const password = this.createPassword(length, options);
+                    this.displayPassword(password);
+                    this.updatePasswordStrength(password);
+                    this.showPasswordActions();
+                    this.hideError();
+                    
+                } catch (error) {
+                    this.showError(error.message);
+                }
+            }
+            
+            createPassword(length, options) {
+                let charset = '';
+                let password = '';
+                
+                // Build character set based on selected options
+                if (options.lowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
+                if (options.uppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                if (options.numbers) charset += '0123456789';
+                if (options.symbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+                
+                if (charset === '') {
+                    throw new Error('Aucune option de complexité sélectionnée');
+                }
+                
+                // Generate password ensuring at least one character from each selected category
+                const selectedOptions = Object.entries(options).filter(([_, checked]) => checked);
+                
+                // Add one character from each selected category first
+                selectedOptions.forEach(([type, _]) => {
+                    switch (type) {
+                        case 'lowercase':
+                            password += 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 26)];
+                            break;
+                        case 'uppercase':
+                            password += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
+                            break;
+                        case 'numbers':
+                            password += '0123456789'[Math.floor(Math.random() * 10)];
+                            break;
+                        case 'symbols':
+                            password += '!@#$%^&*()_+-=[]{}|;:,.<>?'[Math.floor(Math.random() * 32)];
+                            break;
+                    }
+                });
+                
+                // Fill the rest randomly
+                for (let i = password.length; i < length; i++) {
+                    password += charset[Math.floor(Math.random() * charset.length)];
+                }
+                
+                // Shuffle the password to avoid predictable patterns
+                return this.shuffleString(password);
+            }
+            
+            shuffleString(str) {
+                const arr = str.split('');
+                for (let i = arr.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+                return arr.join('');
+            }
+            
+            displayPassword(password) {
+                this.passwordDisplay.innerHTML = `
+                    <div class="password-result">
+                        <span class="password-text-content">${password}</span>
+                    </div>
+                `;
+            }
+            
+            updatePasswordStrength(password) {
+                let score = 0;
+                let feedback = '';
+                
+                // Length score
+                if (password.length >= 8) score += 1;
+                if (password.length >= 12) score += 1;
+                if (password.length >= 16) score += 1;
+                if (password.length >= 20) score += 1;
+                
+                // Complexity score
+                if (/[a-z]/.test(password)) score += 1;
+                if (/[A-Z]/.test(password)) score += 1;
+                if (/[0-9]/.test(password)) score += 1;
+                if (/[^A-Za-z0-9]/.test(password)) score += 1;
+                
+                // Determine strength level
+                let strengthClass = '';
+                if (score <= 2) {
+                    feedback = 'Très faible';
+                    strengthClass = 'very-weak';
+                } else if (score <= 4) {
+                    feedback = 'Faible';
+                    strengthClass = 'weak';
+                } else if (score <= 6) {
+                    feedback = 'Moyen';
+                    strengthClass = 'medium';
+                } else if (score <= 8) {
+                    feedback = 'Fort';
+                    strengthClass = 'strong';
+                } else {
+                    feedback = 'Très fort';
+                    strengthClass = 'very-strong';
+                }
+                
+                // Update UI
+                this.strengthFill.className = `strength-fill ${strengthClass}`;
+                this.strengthFill.style.width = `${(score / 9) * 100}%`;
+                this.strengthText.textContent = `Force : ${feedback}`;
+            }
+            
+            showPasswordActions() {
+                this.passwordActions.style.display = 'flex';
+            }
+            
+            copyPassword() {
+                const passwordText = this.passwordDisplay.querySelector('.password-text-content');
+                if (!passwordText) return;
+                
+                const password = passwordText.textContent;
+                
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(password).then(() => {
+                        this.showCopySuccess();
+                    }).catch(() => {
+                        this.showCopyError();
+                    });
+                } else {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = password;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    this.showCopySuccess();
+                }
+            }
+            
+            showCopySuccess() {
+                const originalText = this.copyBtn.textContent;
+                this.copyBtn.textContent = 'Copié !';
+                this.copyBtn.style.background = 'var(--success)';
+                this.copyBtn.style.color = 'white';
+                
+                setTimeout(() => {
+                    this.copyBtn.textContent = originalText;
+                    this.copyBtn.style.background = '';
+                    this.copyBtn.style.color = '';
+                }, 2000);
+            }
+            
+            showCopyError() {
+                this.showError('Erreur lors de la copie');
+            }
+            
+            showError(message) {
+                // Create or update error display
+                let errorDiv = document.querySelector('.password-error');
+                if (!errorDiv) {
+                    errorDiv = document.createElement('div');
+                    errorDiv.className = 'password-error';
+                    this.passwordDisplay.parentNode.insertBefore(errorDiv, this.passwordDisplay.nextSibling);
+                }
+                
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 5000);
+            }
+            
+            hideError() {
+                const errorDiv = document.querySelector('.password-error');
+                if (errorDiv) {
+                    errorDiv.style.display = 'none';
+                }
+            }
+        }
+        
+        // Initialize Password Generator when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new PasswordGenerator();
+        });
+    </script>
+</body>
+</html>
