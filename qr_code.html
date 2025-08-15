@@ -176,53 +176,47 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    
     <script>
-        // QR Code Generator Logic
-        class QRCodeGenerator {
-            constructor() {
-                this.textInput = document.getElementById('qr-text');
-                this.generateBtn = document.getElementById('generate-btn');
-                this.sizeSelect = document.getElementById('qr-size');
-                this.colorInput = document.getElementById('qr-foreground');
-                this.qrDisplay = document.getElementById('qrcode');
-                this.downloadBtn = document.getElementById('download-btn');
-                this.copyBtn = document.getElementById('copy-btn');
-                this.qrActions = document.querySelector('.qr-actions');
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize QRCode
+            new QRCode(document.getElementById("qrcode"));
+            
+            const generateBtn = document.getElementById("generate-btn");
+            const textInput = document.getElementById("qr-text");
+            const sizeSelect = document.getElementById("qr-size");
+            const colorInput = document.getElementById("qr-foreground");
+            const downloadBtn = document.getElementById("download-btn");
+            const copyBtn = document.getElementById("copy-btn");
+            const qrActions = document.querySelector(".qr-actions");
+            const qrDisplay = document.getElementById("qrcode");
+            
+            function generateQR() {
+                const text = textInput.value.trim();
+                const size = parseInt(sizeSelect.value);
+                const color = colorInput.value;
                 
-                this.init();
+                if (text) {
+                    qrDisplay.innerHTML = "";
+                    new QRCode(qrDisplay, {
+                        text: text,
+                        width: size,
+                        height: size,
+                        colorDark: color,
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                    qrActions.style.display = "flex";
+                    qrDisplay.classList.add("qr-generated");
+                } else {
+                    showError("Veuillez entrer une URL ou un texte.", textInput);
+                    qrActions.style.display = "none";
+                }
             }
             
-            init() {
-                this.generateBtn.addEventListener('click', () => this.generateQR());
-                this.textInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.generateQR();
-                });
-                this.downloadBtn.addEventListener('click', () => this.downloadQR());
-                this.copyBtn.addEventListener('click', () => this.copyQR());
-                
-                // Auto-generate on input change
-                this.textInput.addEventListener('input', this.debounce(() => {
-                    if (this.textInput.value.trim()) {
-                        this.generateQR();
-                    }
-                }, 500));
-            }
-            
-            debounce(func, wait) {
-                let timeout;
-                return function executedFunction(...args) {
-                    const later = () => {
-                        clearTimeout(timeout);
-                        func(...args);
-                    };
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait);
-                };
-            }
-            
-            showError(message, targetElement) {
+            function showError(message, targetElement) {
                 if (!targetElement) return;
                 
                 const errorDiv = document.createElement('div');
@@ -248,118 +242,64 @@
                 }, 5000);
             }
             
-            showLoading(element) {
-                if (!element) return;
-                
-                element.classList.add('loading');
-                element.disabled = true;
-                
-                // Add loading text if it's a button
-                if (element.tagName === 'BUTTON') {
-                    element.dataset.originalText = element.textContent;
-                    element.textContent = 'Génération...';
-                }
-            }
+            // Event listeners
+            generateBtn.addEventListener("click", generateQR);
             
-            hideLoading(element) {
-                if (!element) return;
-                
-                element.classList.remove('loading');
-                element.disabled = false;
-                
-                // Restore original text if it's a button
-                if (element.tagName === 'BUTTON' && element.dataset.originalText) {
-                    element.textContent = element.dataset.originalText;
+            downloadBtn.addEventListener("click", function() {
+                const canvas = qrDisplay.querySelector("canvas");
+                if (canvas) {
+                    const link = document.createElement("a");
+                    link.download = "qr-code.png";
+                    link.href = canvas.toDataURL();
+                    link.click();
                 }
-            }
+            });
             
-            generateQR() {
-                const text = this.textInput.value.trim();
-                if (!text) {
-                    this.showError('Veuillez entrer un texte ou une URL', this.textInput);
-                    return;
-                }
-                
-                this.showLoading(this.generateBtn);
-                
-                try {
-                    const size = parseInt(this.sizeSelect.value);
-                    const color = this.colorInput.value;
-                    
-                    // Clear previous QR code
-                    this.qrDisplay.innerHTML = '';
-                    
-                    // Generate new QR code
-                    QRCode.toCanvas(this.qrDisplay, text, {
-                        width: size,
-                        color: {
-                            dark: color,
-                            light: '#FFFFFF'
-                        },
-                        margin: 1
-                    }, (error) => {
-                        this.hideLoading(this.generateBtn);
-                        
-                        if (error) {
-                            this.showError('Erreur lors de la génération du QR code', this.textInput);
-                            console.error('QR Code generation error:', error);
-                        } else {
-                            this.qrActions.style.display = 'flex';
-                            this.qrDisplay.scrollIntoView({ behavior: 'smooth' });
+            copyBtn.addEventListener("click", function() {
+                const canvas = qrDisplay.querySelector("canvas");
+                if (canvas) {
+                    canvas.toBlob(function(blob) {
+                        if (navigator.clipboard && navigator.clipboard.write) {
+                            navigator.clipboard.write([
+                                new ClipboardItem({
+                                    "image/png": blob
+                                })
+                            ]).then(() => {
+                                copyBtn.textContent = "Copié !";
+                                setTimeout(() => {
+                                    copyBtn.textContent = "Copier";
+                                }, 2000);
+                            });
                         }
                     });
-                    
-                } catch (error) {
-                    this.hideLoading(this.generateBtn);
-                    this.showError('Erreur lors de la génération du QR code', this.textInput);
-                    console.error('QR Code generation error:', error);
                 }
-            }
+            });
             
-            downloadQR() {
-                const canvas = this.qrDisplay.querySelector('canvas');
-                if (!canvas) return;
-                
-                const link = document.createElement('a');
-                link.download = 'qrcode.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            }
+            textInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") {
+                    generateQR();
+                }
+            });
             
-            copyQR() {
-                const canvas = this.qrDisplay.querySelector('canvas');
-                if (!canvas) return;
-                
-                canvas.toBlob((blob) => {
-                    if (navigator.clipboard && navigator.clipboard.write) {
-                        navigator.clipboard.write([
-                            new ClipboardItem({
-                                'image/png': blob
-                            })
-                        ]).then(() => {
-                            // Show success feedback
-                            const originalText = this.copyBtn.textContent;
-                            this.copyBtn.textContent = 'Copié !';
-                            this.copyBtn.style.background = 'var(--success)';
-                            this.copyBtn.style.color = 'white';
-                            
-                            setTimeout(() => {
-                                this.copyBtn.textContent = originalText;
-                                this.copyBtn.style.background = '';
-                                this.copyBtn.style.color = '';
-                            }, 2000);
-                        });
-                    } else {
-                        this.showError('Copie non supportée par votre navigateur', this.copyBtn);
-                    }
-                });
-            }
-        }
-        
-        // Initialize QR Code Generator when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            new QRCodeGenerator();
+            textInput.addEventListener("input", function() {
+                if (this.value.trim()) {
+                    generateBtn.disabled = false;
+                    generateBtn.classList.remove("btn-disabled");
+                } else {
+                    generateBtn.disabled = true;
+                    generateBtn.classList.add("btn-disabled");
+                }
+            });
+            
+            // Initialize button state
+            generateBtn.disabled = true;
+            generateBtn.classList.add("btn-disabled");
         });
     </script>
+    
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+        🌙
+    </button>
 </body>
 </html>
