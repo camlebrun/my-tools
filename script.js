@@ -121,13 +121,17 @@ class Navigation {
     }
     
     toggleMobileMenu() {
+        const isActive = this.navMenu.classList.toggle('active');
         this.navToggle.classList.toggle('active');
-        this.navMenu.classList.toggle('active');
-        document.body.style.overflow = this.navMenu.classList.contains('active') ? 'hidden' : '';
+        this.navToggle.setAttribute('aria-expanded', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
     }
     
     closeMobileMenu() {
-        if (this.navToggle) this.navToggle.classList.remove('active');
+        if (this.navToggle) {
+            this.navToggle.classList.remove('active');
+            this.navToggle.setAttribute('aria-expanded', 'false');
+        }
         if (this.navMenu) this.navMenu.classList.remove('active');
         document.body.style.overflow = '';
     }
