@@ -1,3 +1,92 @@
+// ===== MOUSE TRACKING FOR SPOTLIGHT EFFECT =====
+class SpotlightEffect {
+    constructor() {
+        this.cards = document.querySelectorAll('.tool-card');
+        if (this.cards.length > 0) {
+            this.init();
+        }
+    }
+
+    init() {
+        document.addEventListener('mousemove', (e) => {
+            this.cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    }
+}
+
+// ===== TOAST NOTIFICATIONS =====
+class Toast {
+    constructor() {
+        this.container = document.createElement('div');
+        this.container.className = 'toast-container';
+        document.body.appendChild(this.container);
+        
+        // Add styles for toast container
+        const styles = document.createElement('style');
+        styles.textContent = `
+            .toast-container {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                pointer-events: none;
+            }
+            .toast {
+                background: rgba(10, 10, 12, 0.9);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 9999px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+                font-size: 0.875rem;
+                font-weight: 500;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                pointer-events: auto;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .toast.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+
+    show(message, duration = 3000) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<span>✨</span> ${message}`;
+        this.container.appendChild(toast);
+
+        // Force reflow
+        toast.offsetHeight;
+
+        toast.classList.add('show');
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }, duration);
+    }
+}
+
 // ===== NAVIGATION MANAGEMENT =====
 class Navigation {
     constructor() {
@@ -25,7 +114,7 @@ class Navigation {
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!this.navbar.contains(e.target)) {
+            if (this.navbar && !this.navbar.contains(e.target)) {
                 this.closeMobileMenu();
             }
         });
@@ -38,39 +127,27 @@ class Navigation {
     }
     
     closeMobileMenu() {
-        this.navToggle.classList.remove('active');
-        this.navMenu.classList.remove('active');
+        if (this.navToggle) this.navToggle.classList.remove('active');
+        if (this.navMenu) this.navMenu.classList.remove('active');
         document.body.style.overflow = '';
     }
     
     setupScrollEffects() {
         if (!this.navbar) return;
         
-        let lastScrollY = window.scrollY;
-        
         window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
-            
-            // Add scrolled class for navbar styling
-            if (currentScrollY > 50) {
+            if (window.scrollY > 50) {
                 this.navbar.classList.add('scrolled');
             } else {
                 this.navbar.classList.remove('scrolled');
             }
-            
-            lastScrollY = currentScrollY;
         });
     }
     
     setupNavigationLinks() {
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                // Close mobile menu when clicking a link
                 this.closeMobileMenu();
-                
-                // Update active state
-                this.navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
             });
         });
     }
@@ -93,7 +170,6 @@ class Animations {
     init() {
         this.setupScrollAnimations();
         this.setupFloatingShapes();
-        this.setupToolCards();
     }
     
     setupScrollAnimations() {
@@ -105,42 +181,22 @@ class Animations {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
         
-        // Observe elements for animation
-        document.querySelectorAll('.tool-card, .section-header').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        document.querySelectorAll('.tool-card, .section-header, .hero-content').forEach(el => {
+            el.classList.add('reveal');
             observer.observe(el);
         });
     }
     
     setupFloatingShapes() {
         const shapes = document.querySelectorAll('.shape');
-        
         shapes.forEach((shape, index) => {
             shape.style.animationDelay = `${index * 2}s`;
-        });
-    }
-    
-    setupToolCards() {
-        const toolCards = document.querySelectorAll('.tool-card');
-        
-        toolCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-8px)';
-                card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = '';
-            });
         });
     }
 }
@@ -152,18 +208,15 @@ class SmoothScrolling {
     }
     
     init() {
-        this.setupSmoothScroll();
-    }
-    
-    setupSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
-                e.preventDefault();
                 const targetId = anchor.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                if (targetId === '#') return;
                 
+                const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+                    e.preventDefault();
+                    const offsetTop = targetElement.offsetTop - 80;
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -174,193 +227,6 @@ class SmoothScrolling {
     }
 }
 
-// ===== UTILITY FUNCTIONS =====
-class Utils {
-    static showLoading(element) {
-        if (!element) return;
-        
-        element.classList.add('loading');
-        element.disabled = true;
-        
-        // Add loading text if it's a button
-        if (element.tagName === 'BUTTON') {
-            element.dataset.originalText = element.textContent;
-            element.textContent = 'Chargement...';
-        }
-    }
-    
-    static hideLoading(element) {
-        if (!element) return;
-        
-        element.classList.remove('loading');
-        element.disabled = false;
-        
-        // Restore original text if it's a button
-        if (element.tagName === 'BUTTON' && element.dataset.originalText) {
-            element.textContent = element.dataset.originalText;
-        }
-    }
-    
-    static showError(message, targetElement) {
-        if (!targetElement) return;
-        
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.textContent = message;
-        errorDiv.style.cssText = `
-            color: var(--error);
-            font-size: 0.875rem;
-            margin-top: var(--space-sm);
-            padding: var(--space-sm);
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: var(--radius-md);
-        `;
-        
-        targetElement.parentNode.appendChild(errorDiv);
-        
-        // Auto-remove after 5 seconds
-        setTimeout(() => {
-            if (errorDiv.parentNode) {
-                errorDiv.remove();
-            }
-        }, 5000);
-    }
-    
-    static debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-}
-
-// ===== THEME SUPPORT =====
-class ThemeManager {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        this.setupThemeDetection();
-        this.setupThemeToggle();
-        this.loadSavedTheme();
-    }
-    
-    setupThemeDetection() {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        const handleThemeChange = (e) => {
-            if (!localStorage.getItem('theme')) {
-                if (e.matches) {
-                    this.setTheme('dark');
-                } else {
-                    this.setTheme('light');
-                }
-            }
-        };
-        
-        mediaQuery.addListener(handleThemeChange);
-        handleThemeChange(mediaQuery);
-    }
-    
-    setupThemeToggle() {
-        const themeToggle = document.getElementById('themeToggle');
-        if (!themeToggle) return;
-        
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            this.setTheme(newTheme);
-        });
-        
-        // Update button icon based on current theme
-        this.updateThemeButton();
-    }
-    
-    setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        this.updateThemeButton();
-    }
-    
-    loadSavedTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            this.setTheme(savedTheme);
-        }
-    }
-    
-    updateThemeButton() {
-        const themeToggle = document.getElementById('themeToggle');
-        if (!themeToggle) return;
-        
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            themeToggle.innerHTML = '☀️';
-            themeToggle.setAttribute('aria-label', 'Passer au thème clair');
-        } else {
-            themeToggle.innerHTML = '🌙';
-            themeToggle.setAttribute('aria-label', 'Passer au thème sombre');
-        }
-    }
-}
-
-// ===== PERFORMANCE OPTIMIZATION =====
-class PerformanceOptimizer {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        this.setupIntersectionObserver();
-        this.setupThrottledScroll();
-    }
-    
-    setupIntersectionObserver() {
-        // Lazy load images and other heavy elements
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                }
-            });
-        });
-        
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-    
-    setupThrottledScroll() {
-        let ticking = false;
-        
-        const updateScroll = () => {
-            // Handle scroll-based updates here
-            ticking = false;
-        };
-        
-        const requestTick = () => {
-            if (!ticking) {
-                requestAnimationFrame(updateScroll);
-                ticking = true;
-            }
-        };
-        
-        window.addEventListener('scroll', requestTick);
-    }
-}
-
 // ===== MAIN APPLICATION =====
 class App {
     constructor() {
@@ -368,7 +234,6 @@ class App {
     }
     
     init() {
-        // Wait for DOM to be ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.start());
         } else {
@@ -378,38 +243,38 @@ class App {
     
     start() {
         try {
-            // Initialize all components
             this.navigation = new Navigation();
             this.animations = new Animations();
             this.smoothScrolling = new SmoothScrolling();
-            this.themeManager = new ThemeManager();
-            this.performanceOptimizer = new PerformanceOptimizer();
+            this.toast = new Toast();
+            this.spotlight = new SpotlightEffect();
             
-            // Setup global utilities
-            window.showLoading = Utils.showLoading;
-            window.hideLoading = Utils.hideLoading;
-            window.showError = Utils.showError;
+            // Global utilities
+            window.showToast = (msg) => this.toast.show(msg);
+            window.showError = (msg, el) => {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = msg;
+                if (el && el.parentNode) {
+                    el.parentNode.appendChild(errorDiv);
+                    setTimeout(() => errorDiv.remove(), 5000);
+                } else {
+                    this.toast.show("❌ " + msg);
+                }
+            };
             
-            console.log('QuickTools app initialized successfully');
-            
+            console.log('QuickTools app initialized');
         } catch (error) {
-            console.error('Error initializing app:', error);
+            console.error('App init error:', error);
         }
     }
 }
 
-// ===== SERVICE WORKER REGISTRATION =====
+// Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('ServiceWorker registration successful:', registration.scope);
-            })
-            .catch(error => {
-                console.log('ServiceWorker registration failed:', error);
-            });
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
     });
 }
 
-// ===== START THE APPLICATION =====
 new App();

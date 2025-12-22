@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>QuickTools - Outils Personnels 2025</title>
+    <title>QuickTools - Minimalist Suite 2026</title>
     <meta name="description" content="Outils personnels simples et efficaces pour vos besoins quotidiens. Interface moderne et fonctionnelle.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,34 +20,12 @@
                 QuickTools
             </a>
             
-            <button class="nav-toggle" id="navToggle" aria-label="Menu de navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
             <div class="nav-menu" id="navMenu">
                 <ul class="nav-list">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html" aria-current="page">
-                            Accueil
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="qr_code.html">
-                            QR Code
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cal_days.html">
-                            Calculatrice
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pwd.html">
-                            Mots de passe
-                        </a>
-                    </li>
+                    <li><a class="nav-link" href="qr_code.html">QR Code</a></li>
+                    <li><a class="nav-link" href="cal_days.html">Dates</a></li>
+                    <li><a class="nav-link" href="pwd.html">Sécurité</a></li>
+                    <li><a class="nav-link" href="kitchen.html">Cuisine</a></li>
                 </ul>
             </div>
         </div>
@@ -57,24 +36,16 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Outils <span class="highlight">Essentiels</span><br>
-                    pour le Quotidien
+                    L'essentiel, <span class="highlight">propulsé</span><br>
+                    par la simplicité.
                 </h1>
                 <p class="hero-subtitle">
-                    Une collection d'outils simples et efficaces, conçus pour simplifier vos tâches quotidiennes
+                    Une collection d'outils minimalistes conçus pour 2026. 
                 </p>
                 <div class="hero-actions">
                     <a href="#tools" class="btn btn-primary">
-                        Découvrir les outils
+                        Explorer les outils
                     </a>
-                </div>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="floating-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
                 </div>
             </div>
         </div>
@@ -83,80 +54,60 @@
     <!-- Tools Section -->
     <main id="tools" class="tools-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Mes <span class="highlight">Outils</span></h2>
-                <p class="section-subtitle">
-                    Chaque outil est conçu pour être simple, efficace et répondre à vos besoins quotidiens
-                </p>
-            </div>
-            
             <div class="tools-grid">
-                <!-- Calculatrice de Jours -->
-                <article class="tool-card" data-tool="calculator">
+                <!-- Calculatrice de Jours (Grande) -->
+                <article class="tool-card" onclick="location.href='cal_days.html'">
                     <div class="card-header">
                         <div class="card-icon">📅</div>
-                        <h3 class="card-title">Calculatrice de Jours</h3>
-                    </div>
-                    <div class="card-content">
+                        <h2 class="card-title">Gestion du temps</h2>
                         <p class="card-description">
-                            Calculez précisément le nombre de jours entre deux dates. Idéal pour la planification et la gestion d'échéances.
+                            Calculez les différences entre dates et planifiez vos échéances.
                         </p>
-                        <div class="card-features">
-                            <span class="feature">Précis</span>
-                            <span class="feature">Rapide</span>
-                            <span class="feature">Simple</span>
-                        </div>
                     </div>
                     <div class="card-actions">
-                        <a href="cal_days.html" class="btn btn-outline">
-                            Utiliser
-                        </a>
+                        <span class="btn btn-outline">Lancer l'outil</span>
                     </div>
                 </article>
 
                 <!-- Générateur QR Code -->
-                <article class="tool-card" data-tool="qr">
+                <article class="tool-card" onclick="location.href='qr_code.html'">
                     <div class="card-header">
                         <div class="card-icon">📱</div>
-                        <h3 class="card-title">Générateur QR Code</h3>
-                    </div>
-                    <div class="card-content">
+                        <h2 class="card-title">Connectivité</h2>
                         <p class="card-description">
-                            Créez des QR codes personnalisés pour vos URLs, textes ou informations de contact.
+                            Générez des QR codes haute résolution.
                         </p>
-                        <div class="card-features">
-                            <span class="feature">Personnalisable</span>
-                            <span class="feature">Qualité</span>
-                            <span class="feature">Rapide</span>
-                        </div>
                     </div>
                     <div class="card-actions">
-                        <a href="qr_code.html" class="btn btn-outline">
-                            Générer
-                        </a>
+                        <span class="btn btn-outline">Générer</span>
+                    </div>
+                </article>
+
+                <!-- Cuisine -->
+                <article class="tool-card" onclick="location.href='kitchen.html'">
+                    <div class="card-header">
+                        <div class="card-icon">⚖️</div>
+                        <h2 class="card-title">Cuisine</h2>
+                        <p class="card-description">
+                            Convertisseur intelligent pour vos mesures et ingrédients.
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="btn btn-outline">Convertir</span>
                     </div>
                 </article>
 
                 <!-- Générateur Mots de Passe -->
-                <article class="tool-card" data-tool="password">
+                <article class="tool-card" onclick="location.href='pwd.html'">
                     <div class="card-header">
                         <div class="card-icon">🔐</div>
-                        <h3 class="card-title">Générateur Mots de Passe</h3>
-                    </div>
-                    <div class="card-content">
+                        <h2 class="card-title">Sécurité</h2>
                         <p class="card-description">
-                            Générez des mots de passe sécurisés et conformes aux standards de sécurité modernes.
+                            Clés cryptographiques hautement personnalisables.
                         </p>
-                        <div class="card-features">
-                            <span class="feature">Sécurisé</span>
-                            <span class="feature">Configurable</span>
-                            <span class="feature">Conforme</span>
-                        </div>
                     </div>
                     <div class="card-actions">
-                        <a href="pwd.html" class="btn btn-outline">
-                            Générer
-                        </a>
+                        <span class="btn btn-outline">Sécuriser</span>
                     </div>
                 </article>
             </div>
@@ -170,33 +121,28 @@
                 <div class="footer-brand">
                     <h3 class="footer-title">QuickTools</h3>
                     <p class="footer-description">
-                        Outils simples pour un quotidien plus efficace
+                        L'efficacité par le design.
                     </p>
                 </div>
                 
                 <div class="footer-links">
                     <div class="footer-section">
-                        <h4>Outils</h4>
+                        <h4>Navigation</h4>
                         <ul>
-                            <li><a href="cal_days.html">Calculatrice de Jours</a></li>
-                            <li><a href="qr_code.html">Générateur QR Code</a></li>
-                            <li><a href="pwd.html">Générateur Mots de Passe</a></li>
+                            <li><a href="qr_code.html">QR Code</a></li>
+                            <li><a href="cal_days.html">Dates</a></li>
+                            <li><a href="pwd.html">Sécurité</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 QuickTools. Tous droits réservés.</p>
+                <p>&copy; 2026 QuickTools. Conçu pour le futur.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
-        🌙
-    </button>
 </body>
 </html>

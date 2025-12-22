@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cuisine - QuickTools 2026</title>
+    <meta name="description" content="Convertisseur de cuisine intelligent pour vos recettes quotidiennes.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="QuickTools - Accueil">
+                <span class="brand-icon">⚡</span>
+                QuickTools
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="qr_code.html">QR Code</a></li>
+                    <li><a class="nav-link" href="cal_days.html">Dates</a></li>
+                    <li><a class="nav-link" href="pwd.html">Sécurité</a></li>
+                    <li><a class="nav-link active" href="kitchen.html">Cuisine</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Mesure & <span class="highlight">Cuisine</span>
+                </h1>
+                <p class="hero-subtitle">
+                    L'assistant indispensable pour réussir toutes vos recettes.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tools-section">
+        <div class="container">
+            <div class="calculator-container">
+                <!-- Input Section -->
+                <div class="qr-input-section">
+                    <h2 class="section-title">Conversion</h2>
+                    <p class="section-subtitle">Transformez les unités instantanément</p>
+                    
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-label">Ingrédient (optionnel) :</label>
+                        <select id="ingredient" class="form-control">
+                            <option value="none">Eau / Liquide standard</option>
+                            <option value="farine">Farine</option>
+                            <option value="sucre">Sucre</option>
+                            <option value="beurre">Beurre</option>
+                            <option value="riz">Riz</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Valeur :</label>
+                            <input type="number" id="inputValue" class="form-control" value="1" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Unité :</label>
+                            <select id="inputUnit" class="form-control">
+                                <optgroup label="Volumes">
+                                    <option value="ml">Millilitres (ml)</option>
+                                    <option value="cl">Centilitres (cl)</option>
+                                    <option value="l">Litres (l)</option>
+                                    <option value="cup">Tasse (Cup)</option>
+                                    <option value="tbsp">C. à Soupe</option>
+                                    <option value="tsp">C. à Café</option>
+                                </optgroup>
+                                <optgroup label="Poids">
+                                    <option value="g">Grammes (g)</option>
+                                    <option value="kg">Kilogrammes (kg)</option>
+                                    <option value="oz">Onces (oz)</option>
+                                    <option value="lb">Livres (lb)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result Section -->
+                <div class="qr-result-section">
+                    <div id="kitchenResults" style="width: 100%;">
+                        <div class="qr-placeholder">
+                            <div class="placeholder-icon">⚖️</div>
+                            <p>Entrez une valeur pour voir les équivalences</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-title">QuickTools</h3>
+                    <p class="footer-description">L'efficacité par le design.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="qr_code.html">QR Code</a></li>
+                            <li><a href="cal_days.html">Dates</a></li>
+                            <li><a href="pwd.html">Sécurité</a></li>
+                            <li><a href="kitchen.html">Cuisine</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickTools. Conçu pour le futur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="js/kitchen.js"></script>
+</body>
+</html>
