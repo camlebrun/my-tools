@@ -74,7 +74,13 @@ class PasswordGenerator {
     }
     
     generatePassword() {
-        const length = parseInt(this.lengthSlider.value);
+        // Clamp length to avoid weird slider states or NaN
+        const rawLength = parseInt(this.lengthSlider ? this.lengthSlider.value : '16', 10);
+        const length = Math.min(64, Math.max(8, isNaN(rawLength) ? 16 : rawLength));
+        if (this.lengthSlider) {
+            this.lengthSlider.value = length;
+            this.updateLengthDisplay();
+        }
         const options = {
             lowercase: this.lowercaseCheckbox ? this.lowercaseCheckbox.checked : false,
             uppercase: this.uppercaseCheckbox ? this.uppercaseCheckbox.checked : false,
@@ -89,7 +95,12 @@ class PasswordGenerator {
         }
         
         try {
-            const password = this.createPassword(length, options);
+            let password = this.createPassword(length, options);
+
+            // Safety net: ensure final length matches request
+            if (password.length !== length) {
+                password = this.normalizeLength(password, length);
+            }
             this.displayPassword(password);
             this.updatePasswordStrength(password);
             this.showPasswordActions();
@@ -134,7 +145,7 @@ class PasswordGenerator {
                     password += '0123456789'[Math.floor(Math.random() * 10)];
                     break;
                 case 'symbols':
-                    password += '!@#$%^&*()_+-=[]{}|;:,.<>?'[Math.floor(Math.random() * 32)];
+                    password += '!@#$%^&*()_+-=[]{}|;:,.<>?'[Math.floor(Math.random() * 26)];
                     break;
             }
         });
@@ -146,6 +157,32 @@ class PasswordGenerator {
         
         // Shuffle the password to avoid predictable patterns
         return this.shuffleString(password);
+    }
+
+    normalizeLength(password, length) {
+        const shuffled = this.shuffleString(password);
+        if (shuffled.length > length) {
+            return shuffled.slice(0, length);
+        }
+        if (shuffled.length < length) {
+            const charset = this.buildCharsetFromLastOptions();
+            let extended = shuffled;
+            while (extended.length < length && charset.length > 0) {
+                extended += charset[Math.floor(Math.random() * charset.length)];
+            }
+            return this.shuffleString(extended).slice(0, length);
+        }
+        return shuffled;
+    }
+
+    buildCharsetFromLastOptions() {
+        // Fallback charset based on current toggles; ensures normalizeLength can pad safely
+        let charset = '';
+        if (this.lowercaseCheckbox && this.lowercaseCheckbox.checked) charset += 'abcdefghijklmnopqrstuvwxyz';
+        if (this.uppercaseCheckbox && this.uppercaseCheckbox.checked) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (this.numbersCheckbox && this.numbersCheckbox.checked) charset += '0123456789';
+        if (this.symbolsCheckbox && this.symbolsCheckbox.checked) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+        return charset || 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     }
     
     shuffleString(str) {
@@ -205,7 +242,7 @@ class PasswordGenerator {
         // Update UI
         if (this.strengthFill) {
             this.strengthFill.className = `strength-fill ${strengthClass}`;
-            this.strengthFill.style.width = `${(score / 9) * 100}%`;
+            this.strengthFill.style.width = `${(score / 8) * 100}%`;
         }
         if (this.strengthText) {
             this.strengthText.textContent = `Force : ${feedback}`;
