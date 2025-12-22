@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Générateur Mots de Passe - QuickTools 2025</title>
+    <title>Sécurité - QuickTools 2026</title>
     <meta name="description" content="Générateur mots de passe sécurisés et conformes aux standards de sécurité. Interface simple avec options de personnalisation.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,34 +20,12 @@
                 QuickTools
             </a>
             
-            <button class="nav-toggle" id="navToggle" aria-label="Menu de navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
             <div class="nav-menu" id="navMenu">
                 <ul class="nav-list">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            Accueil
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="qr_code.html">
-                            QR Code
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cal_days.html">
-                            Calculatrice
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="pwd.html" aria-current="page">
-                            Mots de passe
-                        </a>
-                    </li>
+                    <li><a class="nav-link" href="qr_code.html">QR Code</a></li>
+                    <li><a class="nav-link" href="cal_days.html">Dates</a></li>
+                    <li><a class="nav-link active" href="pwd.html">Sécurité</a></li>
+                    <li><a class="nav-link" href="kitchen.html">Cuisine</a></li>
                 </ul>
             </div>
         </div>
@@ -57,19 +36,11 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Générateur <span class="highlight">Mots de Passe</span>
+                    Mots de <span class="highlight">Passe</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Créez des mots de passe sécurisés et conformes aux standards de sécurité. Personnalisez la complexité selon vos besoins.
+                    Entropie cryptographique maximale.
                 </p>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="floating-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                </div>
             </div>
         </div>
     </header>
@@ -80,13 +51,13 @@
             <div class="password-generator-container">
                 <!-- Input Section -->
                 <div class="password-input-section">
-                    <h2 class="section-title">Générez votre Mot de Passe Sécurisé</h2>
+                    <h2 class="section-title">Configuration</h2>
                     <p class="section-subtitle">
-                        Configurez les paramètres de sécurité selon vos besoins
+                        Réglez la complexité souhaitée
                     </p>
                     
                     <div class="option-group">
-                        <label for="length" class="form-label">Longueur du mot de passe :</label>
+                        <label for="length" class="form-label">Longueur : <span class="length-value">16</span></label>
                         <div class="length-control">
                             <input 
                                 type="range" 
@@ -96,43 +67,38 @@
                                 value="16" 
                                 class="form-control range-slider"
                             >
-                            <span class="length-value">16</span>
                         </div>
-                        <small class="length-info">Longueur recommandée : 16-32 caractères</small>
                     </div>
                     
                     <div class="complexity-options">
-                        <h3>Options de Complexité</h3>
+                        <h3>Inclusions</h3>
                         <div class="checkbox-group">
                             <label class="checkbox-item">
                                 <input type="checkbox" id="includeLowercase" checked>
                                 <span class="checkmark"></span>
-                                Lettres minuscules (a-z)
+                                Minuscules (abc)
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" id="includeUppercase" checked>
                                 <span class="checkmark"></span>
-                                Lettres majuscules (A-Z)
+                                Majuscules (ABC)
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" id="includeNumbers" checked>
                                 <span class="checkmark"></span>
-                                Chiffres (0-9)
+                                Chiffres (123)
                             </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" id="includeSymbols" checked>
                                 <span class="checkmark"></span>
-                                Symboles (!@#$%^&*)
+                                Symboles (!@#)
                             </label>
                         </div>
                     </div>
                     
                     <div class="password-actions">
-                        <button id="generate-btn" class="btn btn-primary">
-                            Générer un Mot de Passe
-                        </button>
-                        <button id="regenerate-btn" class="btn btn-outline" style="display: none;">
-                            Régénérer
+                        <button id="generate-btn" class="btn btn-primary" style="width: 100%;">
+                            Générer le mot de passe
                         </button>
                     </div>
                 </div>
@@ -143,25 +109,25 @@
                         <div id="password" class="password-text" aria-live="polite">
                             <div class="password-placeholder">
                                 <div class="placeholder-icon">🔐</div>
-                                <p>Votre mot de passe apparaîtra ici</p>
+                                <p>Prêt pour la génération</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="password-actions" style="display: none;">
-                        <button id="copy-btn" class="btn btn-outline">
-                            Copier
-                        </button>
-                        <button id="refresh-btn" class="btn btn-outline">
-                            Actualiser
-                        </button>
                     </div>
                     
                     <div class="password-strength">
                         <div class="strength-bar">
                             <div class="strength-fill" id="strengthFill"></div>
                         </div>
-                        <span class="strength-text" id="strengthText">Force du mot de passe</span>
+                        <span class="strength-text" id="strengthText">Force attendue</span>
+                    </div>
+                    
+                    <div class="password-actions" style="display: none;">
+                        <button id="copy-btn" class="btn btn-primary">
+                            Copier
+                        </button>
+                        <button id="refresh-btn" class="btn btn-outline">
+                            Nouveau
+                        </button>
                     </div>
                 </div>
             </div>
@@ -175,292 +141,37 @@
                 <div class="footer-brand">
                     <h3 class="footer-title">QuickTools</h3>
                     <p class="footer-description">
-                        Outils simples pour un quotidien plus efficace
+                        L'efficacité par le design.
                     </p>
                 </div>
                 
                 <div class="footer-links">
                     <div class="footer-section">
-                        <h4>Outils</h4>
+                        <h4>Navigation</h4>
                         <ul>
-                            <li><a href="cal_days.html">Calculatrice de Jours</a></li>
-                            <li><a href="qr_code.html">Générateur QR Code</a></li>
-                            <li><a href="pwd.html">Générateur Mots de Passe</a></li>
+                            <li><a href="qr_code.html">QR Code</a></li>
+                            <li><a href="cal_days.html">Dates</a></li>
+                            <li><a href="pwd.html">Sécurité</a></li>
+                            <li><a href="kitchen.html">Cuisine</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 QuickTools. Tous droits réservés.</p>
+                <p>&copy; 2026 QuickTools. Conçu pour le futur.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    
-    <script>
-        // Password Generator Logic
-        class PasswordGenerator {
-            constructor() {
-                this.lengthSlider = document.getElementById('length');
-                this.lengthValue = document.querySelector('.length-value');
-                this.lowercaseCheckbox = document.getElementById('includeLowercase');
-                this.uppercaseCheckbox = document.getElementById('includeUppercase');
-                this.numbersCheckbox = document.getElementById('includeNumbers');
-                this.symbolsCheckbox = document.getElementById('includeSymbols');
-                this.generateBtn = document.getElementById('generate-btn');
-                this.regenerateBtn = document.getElementById('regenerate-btn');
-                this.passwordDisplay = document.getElementById('password');
-                this.copyBtn = document.getElementById('copy-btn');
-                this.refreshBtn = document.getElementById('refresh-btn');
-                this.passwordActions = document.querySelector('.password-actions');
-                this.strengthFill = document.getElementById('strengthFill');
-                this.strengthText = document.getElementById('strengthText');
-                
-                this.init();
-            }
-            
-            init() {
-                this.setupEventListeners();
-                this.updateLengthDisplay();
-            }
-            
-            setupEventListeners() {
-                this.lengthSlider.addEventListener('input', () => this.updateLengthDisplay());
-                this.generateBtn.addEventListener('click', () => this.generatePassword());
-                this.regenerateBtn.addEventListener('click', () => this.generatePassword());
-                this.copyBtn.addEventListener('click', () => this.copyPassword());
-                this.refreshBtn.addEventListener('click', () => this.generatePassword());
-                
-                // Update regenerate button visibility when checkboxes change
-                [this.lowercaseCheckbox, this.uppercaseCheckbox, this.numbersCheckbox, this.symbolsCheckbox]
-                    .forEach(checkbox => {
-                        checkbox.addEventListener('change', () => this.updateRegenerateButton());
-                    });
-            }
-            
-            updateLengthDisplay() {
-                this.lengthValue.textContent = this.lengthSlider.value;
-            }
-            
-            updateRegenerateButton() {
-                const hasCheckedOptions = this.lowercaseCheckbox.checked || 
-                                        this.uppercaseCheckbox.checked || 
-                                        this.numbersCheckbox.checked || 
-                                        this.symbolsCheckbox.checked;
-                
-                this.regenerateBtn.style.display = hasCheckedOptions ? 'inline-flex' : 'none';
-            }
-            
-            generatePassword() {
-                const length = parseInt(this.lengthSlider.value);
-                const options = {
-                    lowercase: this.lowercaseCheckbox.checked,
-                    uppercase: this.uppercaseCheckbox.checked,
-                    numbers: this.numbersCheckbox.checked,
-                    symbols: this.symbolsCheckbox.checked
-                };
-                
-                // Validate that at least one option is selected
-                if (!Object.values(options).some(Boolean)) {
-                    this.showError('Veuillez sélectionner au moins une option de complexité');
-                    return;
-                }
-                
-                try {
-                    const password = this.createPassword(length, options);
-                    this.displayPassword(password);
-                    this.updatePasswordStrength(password);
-                    this.showPasswordActions();
-                    this.hideError();
-                    
-                } catch (error) {
-                    this.showError(error.message);
-                }
-            }
-            
-            createPassword(length, options) {
-                let charset = '';
-                let password = '';
-                
-                // Build character set based on selected options
-                if (options.lowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
-                if (options.uppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                if (options.numbers) charset += '0123456789';
-                if (options.symbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
-                
-                if (charset === '') {
-                    throw new Error('Aucune option de complexité sélectionnée');
-                }
-                
-                // Generate password ensuring at least one character from each selected category
-                const selectedOptions = Object.entries(options).filter(([_, checked]) => checked);
-                
-                // Add one character from each selected category first
-                selectedOptions.forEach(([type, _]) => {
-                    switch (type) {
-                        case 'lowercase':
-                            password += 'abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 26)];
-                            break;
-                        case 'uppercase':
-                            password += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)];
-                            break;
-                        case 'numbers':
-                            password += '0123456789'[Math.floor(Math.random() * 10)];
-                            break;
-                        case 'symbols':
-                            password += '!@#$%^&*()_+-=[]{}|;:,.<>?'[Math.floor(Math.random() * 32)];
-                            break;
-                    }
-                });
-                
-                // Fill the rest randomly
-                for (let i = password.length; i < length; i++) {
-                    password += charset[Math.floor(Math.random() * charset.length)];
-                }
-                
-                // Shuffle the password to avoid predictable patterns
-                return this.shuffleString(password);
-            }
-            
-            shuffleString(str) {
-                const arr = str.split('');
-                for (let i = arr.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
-                return arr.join('');
-            }
-            
-            displayPassword(password) {
-                this.passwordDisplay.innerHTML = `
-                    <div class="password-result">
-                        <span class="password-text-content">${password}</span>
-                    </div>
-                `;
-            }
-            
-            updatePasswordStrength(password) {
-                let score = 0;
-                let feedback = '';
-                
-                // Length score
-                if (password.length >= 8) score += 1;
-                if (password.length >= 12) score += 1;
-                if (password.length >= 16) score += 1;
-                if (password.length >= 20) score += 1;
-                
-                // Complexity score
-                if (/[a-z]/.test(password)) score += 1;
-                if (/[A-Z]/.test(password)) score += 1;
-                if (/[0-9]/.test(password)) score += 1;
-                if (/[^A-Za-z0-9]/.test(password)) score += 1;
-                
-                // Determine strength level
-                let strengthClass = '';
-                if (score <= 2) {
-                    feedback = 'Très faible';
-                    strengthClass = 'very-weak';
-                } else if (score <= 4) {
-                    feedback = 'Faible';
-                    strengthClass = 'weak';
-                } else if (score <= 6) {
-                    feedback = 'Moyen';
-                    strengthClass = 'medium';
-                } else if (score <= 8) {
-                    feedback = 'Fort';
-                    strengthClass = 'strong';
-                } else {
-                    feedback = 'Très fort';
-                    strengthClass = 'very-strong';
-                }
-                
-                // Update UI
-                this.strengthFill.className = `strength-fill ${strengthClass}`;
-                this.strengthFill.style.width = `${(score / 9) * 100}%`;
-                this.strengthText.textContent = `Force : ${feedback}`;
-            }
-            
-            showPasswordActions() {
-                this.passwordActions.style.display = 'flex';
-            }
-            
-            copyPassword() {
-                const passwordText = this.passwordDisplay.querySelector('.password-text-content');
-                if (!passwordText) return;
-                
-                const password = passwordText.textContent;
-                
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(password).then(() => {
-                        this.showCopySuccess();
-                    }).catch(() => {
-                        this.showCopyError();
-                    });
-                } else {
-                    // Fallback for older browsers
-                    const textArea = document.createElement('textarea');
-                    textArea.value = password;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    this.showCopySuccess();
-                }
-            }
-            
-            showCopySuccess() {
-                const originalText = this.copyBtn.textContent;
-                this.copyBtn.textContent = 'Copié !';
-                this.copyBtn.style.background = 'var(--success)';
-                this.copyBtn.style.color = 'white';
-                
-                setTimeout(() => {
-                    this.copyBtn.textContent = originalText;
-                    this.copyBtn.style.background = '';
-                    this.copyBtn.style.color = '';
-                }, 2000);
-            }
-            
-            showCopyError() {
-                this.showError('Erreur lors de la copie');
-            }
-            
-            showError(message) {
-                // Create or update error display
-                let errorDiv = document.querySelector('.password-error');
-                if (!errorDiv) {
-                    errorDiv = document.createElement('div');
-                    errorDiv.className = 'password-error';
-                    this.passwordDisplay.parentNode.insertBefore(errorDiv, this.passwordDisplay.nextSibling);
-                }
-                
-                errorDiv.textContent = message;
-                errorDiv.style.display = 'block';
-                
-                setTimeout(() => {
-                    errorDiv.style.display = 'none';
-                }, 5000);
-            }
-            
-            hideError() {
-                const errorDiv = document.querySelector('.password-error');
-                if (errorDiv) {
-                    errorDiv.style.display = 'none';
-                }
-            }
-        }
-        
-        // Initialize Password Generator when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            new PasswordGenerator();
-        });
-    </script>
-    
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
-        🌙
-    </button>
+    <script src="js/password-generator.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+

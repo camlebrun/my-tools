@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Générateur QR Code - QuickTools 2025</title>
+    <title>QR Code - QuickTools 2026</title>
     <meta name="description" content="Générateur QR codes simple avec options de personnalisation. Interface moderne et résultats de qualité.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,34 +20,12 @@
                 QuickTools
             </a>
             
-            <button class="nav-toggle" id="navToggle" aria-label="Menu de navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
             <div class="nav-menu" id="navMenu">
                 <ul class="nav-list">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            Accueil
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="qr_code.html" aria-current="page">
-                            QR Code
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cal_days.html">
-                            Calculatrice
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pwd.html">
-                            Mots de passe
-                        </a>
-                    </li>
+                    <li><a class="nav-link active" href="qr_code.html">QR Code</a></li>
+                    <li><a class="nav-link" href="cal_days.html">Dates</a></li>
+                    <li><a class="nav-link" href="pwd.html">Sécurité</a></li>
+                    <li><a class="nav-link" href="kitchen.html">Cuisine</a></li>
                 </ul>
             </div>
         </div>
@@ -57,19 +36,11 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Générateur <span class="highlight">QR Code</span>
+                    QR <span class="highlight">Code</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Créez des QR codes personnalisés pour vos URLs, textes ou informations de contact. Interface simple et résultats de qualité.
+                    Générateur instantané haute fidélité.
                 </p>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="floating-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                </div>
             </div>
         </div>
     </header>
@@ -80,9 +51,9 @@
             <div class="qr-generator-container">
                 <!-- Input Section -->
                 <div class="qr-input-section">
-                    <h2 class="section-title">Générez votre QR Code</h2>
+                    <h2 class="section-title">Configuration</h2>
                     <p class="section-subtitle">
-                        Entrez une URL, un texte ou des informations de contact
+                        URL ou texte à encoder
                     </p>
                     
                     <div class="input-group">
@@ -90,53 +61,53 @@
                             id="qr-text" 
                             class="form-control" 
                             type="text" 
-                            placeholder="Entrez une URL ou un texte..." 
+                            placeholder="https://..." 
                             aria-label="URL ou texte pour QR Code"
                         >
-                        <button 
-                            id="generate-btn" 
-                            class="btn btn-primary" 
-                            aria-label="Générer un QR Code"
-                        >
-                            Générer
-                        </button>
                     </div>
                     
                     <div class="qr-options">
                         <div class="option-group">
-                            <label for="qr-size">Taille du QR Code:</label>
+                            <label for="qr-size">Format :</label>
                             <select id="qr-size" class="form-control">
-                                <option value="128">128x128</option>
-                                <option value="256" selected>256x256</option>
-                                <option value="512">512x512</option>
+                                <option value="128">Petit (128px)</option>
+                                <option value="256" selected>Standard (256px)</option>
+                                <option value="512">Grand (512px)</option>
                             </select>
                         </div>
                         
                         <div class="option-group">
-                            <label for="qr-foreground">Couleur:</label>
+                            <label for="qr-foreground">Couleur :</label>
                             <input 
                                 type="color" 
                                 id="qr-foreground" 
                                 value="#000000" 
                                 class="form-control color-picker"
-                                aria-label="Couleur du QR Code"
                             >
                         </div>
+                        
+                        <button 
+                            id="generate-btn" 
+                            class="btn btn-primary" 
+                            style="margin-top: 1rem; width: 100%;"
+                        >
+                            Générer le QR Code
+                        </button>
                     </div>
                 </div>
                 
                 <!-- Result Section -->
                 <div class="qr-result-section">
-                    <div id="qrcode" class="qr-display" aria-live="polite" role="alert">
+                    <div id="qrcode" class="qr-display" aria-live="polite">
                         <div class="qr-placeholder">
                             <div class="placeholder-icon">📱</div>
-                            <p>Votre QR code apparaîtra ici</p>
+                            <p>Prêt pour la génération</p>
                         </div>
                     </div>
                     
                     <div class="qr-actions" style="display: none;">
-                        <button id="download-btn" class="btn btn-outline">
-                            Télécharger
+                        <button id="download-btn" class="btn btn-primary">
+                            Télécharger (PNG)
                         </button>
                         <button id="copy-btn" class="btn btn-outline">
                             Copier
@@ -154,152 +125,31 @@
                 <div class="footer-brand">
                     <h3 class="footer-title">QuickTools</h3>
                     <p class="footer-description">
-                        Outils simples pour un quotidien plus efficace
+                        L'efficacité par le design.
                     </p>
                 </div>
                 
                 <div class="footer-links">
                     <div class="footer-section">
-                        <h4>Outils</h4>
+                        <h4>Navigation</h4>
                         <ul>
-                            <li><a href="cal_days.html">Calculatrice de Jours</a></li>
-                            <li><a href="qr_code.html">Générateur QR Code</a></li>
-                            <li><a href="pwd.html">Générateur Mots de Passe</a></li>
+                            <li><a href="qr_code.html">QR Code</a></li>
+                            <li><a href="cal_days.html">Dates</a></li>
+                            <li><a href="pwd.html">Sécurité</a></li>
+                            <li><a href="kitchen.html">Cuisine</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 QuickTools. Tous droits réservés.</p>
+                <p>&copy; 2026 QuickTools. Conçu pour le futur.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="script.js"></script>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize QRCode
-            new QRCode(document.getElementById("qrcode"));
-            
-            const generateBtn = document.getElementById("generate-btn");
-            const textInput = document.getElementById("qr-text");
-            const sizeSelect = document.getElementById("qr-size");
-            const colorInput = document.getElementById("qr-foreground");
-            const downloadBtn = document.getElementById("download-btn");
-            const copyBtn = document.getElementById("copy-btn");
-            const qrActions = document.querySelector(".qr-actions");
-            const qrDisplay = document.getElementById("qrcode");
-            
-            function generateQR() {
-                const text = textInput.value.trim();
-                const size = parseInt(sizeSelect.value);
-                const color = colorInput.value;
-                
-                if (text) {
-                    qrDisplay.innerHTML = "";
-                    new QRCode(qrDisplay, {
-                        text: text,
-                        width: size,
-                        height: size,
-                        colorDark: color,
-                        colorLight: "#ffffff",
-                        correctLevel: QRCode.CorrectLevel.H
-                    });
-                    qrActions.style.display = "flex";
-                    qrDisplay.classList.add("qr-generated");
-                } else {
-                    showError("Veuillez entrer une URL ou un texte.", textInput);
-                    qrActions.style.display = "none";
-                }
-            }
-            
-            function showError(message, targetElement) {
-                if (!targetElement) return;
-                
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'error-message';
-                errorDiv.textContent = message;
-                errorDiv.style.cssText = `
-                    color: var(--error);
-                    font-size: 0.875rem;
-                    margin-top: var(--space-sm);
-                    padding: var(--space-sm);
-                    background: #fef2f2;
-                    border: 1px solid #fecaca;
-                    border-radius: var(--radius-md);
-                `;
-                
-                targetElement.parentNode.appendChild(errorDiv);
-                
-                // Auto-remove after 5 seconds
-                setTimeout(() => {
-                    if (errorDiv.parentNode) {
-                        errorDiv.remove();
-                    }
-                }, 5000);
-            }
-            
-            // Event listeners
-            generateBtn.addEventListener("click", generateQR);
-            
-            downloadBtn.addEventListener("click", function() {
-                const canvas = qrDisplay.querySelector("canvas");
-                if (canvas) {
-                    const link = document.createElement("a");
-                    link.download = "qr-code.png";
-                    link.href = canvas.toDataURL();
-                    link.click();
-                }
-            });
-            
-            copyBtn.addEventListener("click", function() {
-                const canvas = qrDisplay.querySelector("canvas");
-                if (canvas) {
-                    canvas.toBlob(function(blob) {
-                        if (navigator.clipboard && navigator.clipboard.write) {
-                            navigator.clipboard.write([
-                                new ClipboardItem({
-                                    "image/png": blob
-                                })
-                            ]).then(() => {
-                                copyBtn.textContent = "Copié !";
-                                setTimeout(() => {
-                                    copyBtn.textContent = "Copier";
-                                }, 2000);
-                            });
-                        }
-                    });
-                }
-            });
-            
-            textInput.addEventListener("keydown", function(e) {
-                if (e.key === "Enter") {
-                    generateQR();
-                }
-            });
-            
-            textInput.addEventListener("input", function() {
-                if (this.value.trim()) {
-                    generateBtn.disabled = false;
-                    generateBtn.classList.remove("btn-disabled");
-                } else {
-                    generateBtn.disabled = true;
-                    generateBtn.classList.add("btn-disabled");
-                }
-            });
-            
-            // Initialize button state
-            generateBtn.disabled = true;
-            generateBtn.classList.add("btn-disabled");
-        });
-    </script>
-    
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
-        🌙
-    </button>
+    <script src="js/qr-generator.js"></script>
 </body>
 </html>
