@@ -148,6 +148,29 @@ main {
     background: var(--bg-elevated);
 }
 
+/* Mobile Toggle */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--text-high);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
     padding: 10rem 0 6rem;
@@ -632,7 +655,71 @@ input[type="range"].form-control:hover::-webkit-slider-thumb {
 }
 
 @media (max-width: 768px) {
-    .navbar { width: 90%; }
+    .navbar { 
+        width: calc(100% - 2rem);
+        top: 1.5rem;
+        padding: 0.75rem 1.5rem;
+    }
+    
+    .navbar .container {
+        justify-content: space-between;
+        gap: 0;
+        height: 40px;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg-surface);
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border-radius: 0;
+        background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, var(--bg-base) 100%);
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .nav-link {
+        font-size: 1.25rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    /* Hamburger Animation */
+    .nav-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    .nav-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
     .hero-title { font-size: 3rem; }
     .tool-card { grid-column: span 12 !important; }
     .qr-generator-container, .calculator-container, .password-generator-container {
